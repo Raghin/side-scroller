@@ -31,9 +31,9 @@
     var characterSheetData = {
         "images": ["assets/images/character atlas.png"],
         "frames": [
-            [2, 64, 31, 96],
-            [31, 64, 60, 96],
-            [60, 64, 89, 96]
+            [2, 64, 31, 32],
+            [31, 64, 31, 32],
+            [60, 64, 31, 32]
         ],
         "animations": {
             "frame 1": [0],
