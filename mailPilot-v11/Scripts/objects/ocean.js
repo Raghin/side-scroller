@@ -16,14 +16,14 @@ var objects;
             game.addChild(this.image);
         }
         Ocean.prototype.update = function () {
-            this.image.y += this.dy;
-            if (this.image.y >= 0) {
+            this.image.x -= this.dy;
+            if (this.image.x <= -300) {
                 this.reset();
             }
         };
 
         Ocean.prototype.reset = function () {
-            this.image.y = -960;
+            this.image.x = +260;
         };
 
         Ocean.prototype.destroy = function () {

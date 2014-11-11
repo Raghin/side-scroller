@@ -1,19 +1,19 @@
 ﻿/// <reference path="../objects/cloud.ts" />
 /// <reference path="../objects/island.ts" />
-/// <reference path="../objects/plane.ts" />
+/// <reference path="../objects/player.ts" />
 /// <reference path="../objects/scoreboard.ts" />
 
 module managers {
     // Collision Manager Class
     export class Collision {
         // class variables
-        private plane: objects.Plane;
+        private player: objects.player;
         private island: objects.Island;
         private clouds = [];
         private scoreboard: objects.Scoreboard;
 
-        constructor(plane: objects.Plane, island: objects.Island, clouds, scoreboard: objects.Scoreboard) {
-            this.plane = plane;
+        constructor(player: objects.player, island: objects.Island, clouds, scoreboard: objects.Scoreboard) {
+            this.player = player;
             this.island = island;
             this.clouds = clouds;
             this.scoreboard = scoreboard;
@@ -40,11 +40,11 @@ module managers {
         private planeAndCloud(cloud: objects.Cloud) {
             var p1: createjs.Point = new createjs.Point();
             var p2: createjs.Point = new createjs.Point();
-            p1.x = this.plane.image.x;
-            p1.y = this.plane.image.y;
+            p1.x = this.player.image.x;
+            p1.y = this.player.image.y;
             p2.x = cloud.image.x;
             p2.y = cloud.image.y;
-            if (this.distance(p1, p2) < ((this.plane.height / 2) + (cloud.height / 2))) {
+            if (this.distance(p1, p2) < ((this.player.height / 2) + (cloud.height / 2))) {
                 createjs.Sound.play("thunder");
                 this.scoreboard.lives -= 1;
                 cloud.reset();
@@ -55,11 +55,11 @@ module managers {
         private planeAndIsland() {
             var p1: createjs.Point = new createjs.Point();
             var p2: createjs.Point = new createjs.Point();
-            p1.x = this.plane.image.x;
-            p1.y = this.plane.image.y;
+            p1.x = this.player.image.x;
+            p1.y = this.player.image.y;
             p2.x = this.island.image.x;
             p2.y = this.island.image.y;
-            if (this.distance(p1, p2) < ((this.plane.height / 2) + (this.island.height / 2))) {
+            if (this.distance(p1, p2) < ((this.player.height / 2) + (this.island.height / 2))) {
                 createjs.Sound.play("yay");
                 this.scoreboard.score += 100;
                 this.island.reset();
