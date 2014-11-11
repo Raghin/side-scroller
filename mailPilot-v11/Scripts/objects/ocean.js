@@ -17,13 +17,13 @@ var objects;
         }
         Ocean.prototype.update = function () {
             this.image.x -= this.dy;
-            if (this.image.x <= -300) {
+            if (this.image.x <= -900) {
                 this.reset();
             }
         };
 
         Ocean.prototype.reset = function () {
-            this.image.x = +260;
+            this.image.x = +0;
         };
 
         Ocean.prototype.destroy = function () {

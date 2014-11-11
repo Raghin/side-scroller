@@ -23,13 +23,13 @@ module objects {
 
         update() {
             this.image.x -= this.dy;
-            if (this.image.x <= -300) {
+            if (this.image.x <= -900) {
                 this.reset();
             }
         }
 
         reset() {
-            this.image.x = +260;
+            this.image.x = +0;
         }
 
         destroy() {
