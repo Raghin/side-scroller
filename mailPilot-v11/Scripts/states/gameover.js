@@ -3,13 +3,13 @@
 /// <reference path="../objects/cloud.ts" />
 /// <reference path="../objects/island.ts" />
 /// <reference path="../objects/label.ts" />
-/// <reference path="../objects/ocean.ts" />
+/// <reference path="../objects/land.ts" />
 /// <reference path="../objects/player.ts" />
 /// <reference path="../objects/scoreboard.ts" />
 var states;
 (function (states) {
     function gameOverState() {
-        ocean.update();
+        land.update();
     }
     states.gameOverState = gameOverState;
 
@@ -33,7 +33,7 @@ var states;
         game = new createjs.Container();
 
         // Instantiate Game Objects
-        ocean = new objects.Ocean(stage, game);
+        land = new objects.Land(stage, game);
 
         // Show Cursor
         stage.cursor = "default";

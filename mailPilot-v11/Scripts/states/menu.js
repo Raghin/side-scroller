@@ -2,7 +2,7 @@
 /// <reference path="../objects/scoreboard.ts" />
 /// <reference path="../objects/plane.ts" />
 /// <reference path="../objects/player.ts" />
-/// <reference path="../objects/ocean.ts" />
+/// <reference path="../objects/land.ts" />
 /// <reference path="../objects/island.ts" />
 /// <reference path="../objects/cloud.ts" />
 /// <reference path="../objects/button.ts" />
@@ -20,7 +20,7 @@ var states;
     states.playButtonClicked = playButtonClicked;
 
     function menuState() {
-        ocean.update();
+        land.update();
         player.update();
     }
     states.menuState = menuState;
@@ -32,7 +32,7 @@ var states;
         game = new createjs.Container();
 
         // Instantiate Game Objects
-        ocean = new objects.Ocean(stage, game);
+        land = new objects.Land(stage, game);
         player = new objects.player(stage, game);
 
         // Show Cursor

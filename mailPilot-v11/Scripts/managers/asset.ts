@@ -3,6 +3,7 @@
     var assetManifest = [
         { id: "loading", src: "assets/images/loading.jpg" },
         { id: "ocean", src: "assets/images/ocean_vert.gif" },
+        { id: "land", src: "assets/images/bigland.jpg" },
         { id: "engine", src: "assets/sounds/engine.ogg" },
         { id: "thunder", src: "assets/sounds/thunder.ogg" },
         { id: "yay", src: "assets/sounds/yay.ogg" }

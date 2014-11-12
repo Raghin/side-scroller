@@ -2,14 +2,14 @@
 /// <reference path="../objects/cloud.ts" />
 /// <reference path="../objects/island.ts" />
 /// <reference path="../objects/label.ts" />
-/// <reference path="../objects/ocean.ts" />
+/// <reference path="../objects/land.ts" />
 /// <reference path="../objects/player.ts" />
 /// <reference path="../objects/scoreboard.ts" />
 /// <reference path="../managers/collision.ts" />
 var states;
 (function (states) {
     function playState() {
-        ocean.update();
+        land.update();
         island.update();
         player.update();
 
@@ -37,7 +37,7 @@ var states;
         game = new createjs.Container();
 
         // Instantiate Game Objects
-        ocean = new objects.Ocean(stage, game);
+        land = new objects.Land(stage, game);
         island = new objects.Island(stage, game);
         player = new objects.player(stage, game);
 

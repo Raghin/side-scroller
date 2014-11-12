@@ -2,7 +2,7 @@
 /// <reference path="managers/asset.ts" />
 /// <reference path="objects/cloud.ts" />
 /// <reference path="objects/island.ts" />
-/// <reference path="objects/ocean.ts" />
+/// <reference path="objects/land.ts" />
 /// <reference path="objects/player.ts" />
 /// <reference path="objects/scoreboard.ts" />
 /// <reference path="objects/label.ts" />
@@ -18,7 +18,7 @@
 var stage: createjs.Stage;
 var game: createjs.Container;
 
-var ocean: objects.Ocean;
+var land: objects.Land;
 var player: objects.player;
 
 var island: objects.Island;
