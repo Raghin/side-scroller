@@ -1,7 +1,8 @@
 ﻿/// <reference path="constants.ts" />
 /// <reference path="managers/asset.ts" />
 /// <reference path="objects/cloud.ts" />
-/// <reference path="objects/island.ts" />
+/// <reference path="objects/crystal.ts" />
+/// <reference path="objects/lifeOrb.ts" />
 /// <reference path="objects/land.ts" />
 /// <reference path="objects/player.ts" />
 /// <reference path="objects/scoreboard.ts" />
@@ -21,7 +22,8 @@ var game: createjs.Container;
 var land: objects.Land;
 var player: objects.player;
 
-var island: objects.Island;
+var crystal: objects.Crystal;
+var lifeOrb: objects.lifeOrb;
 var clouds = []; // Clouds array;
 var scoreboard: objects.Scoreboard;
 

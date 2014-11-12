@@ -1,15 +1,17 @@
 ﻿/// <reference path="../objects/cloud.ts" />
-/// <reference path="../objects/island.ts" />
+/// <reference path="../objects/crystal.ts" />
+/// <reference path="../objects/lifeOrb.ts" />
 /// <reference path="../objects/player.ts" />
 /// <reference path="../objects/scoreboard.ts" />
 var managers;
 (function (managers) {
     // Collision Manager Class
     var Collision = (function () {
-        function Collision(player, island, clouds, scoreboard) {
+        function Collision(player, crystal, lifeOrb, clouds, scoreboard) {
             this.clouds = [];
             this.player = player;
-            this.island = island;
+            this.crystal = crystal;
+            this.lifeOrb = lifeOrb;
             this.clouds = clouds;
             this.scoreboard = scoreboard;
         }
@@ -38,25 +40,40 @@ var managers;
             p1.y = this.player.image.y;
             p2.x = cloud.image.x;
             p2.y = cloud.image.y;
-            if (this.distance(p1, p2) < ((this.player.height / 2) + (cloud.height / 2))) {
+            if (this.distance(p1, p2) < ((this.player.width / 2) + (cloud.width / 2))) {
                 createjs.Sound.play("thunder");
                 this.scoreboard.lives -= 1;
                 cloud.reset();
             }
         };
 
-        // check collision between plane and island
-        Collision.prototype.planeAndIsland = function () {
+        // check collision between plane and crystal
+        Collision.prototype.playerAndCrystal = function () {
             var p1 = new createjs.Point();
             var p2 = new createjs.Point();
             p1.x = this.player.image.x;
             p1.y = this.player.image.y;
-            p2.x = this.island.image.x;
-            p2.y = this.island.image.y;
-            if (this.distance(p1, p2) < ((this.player.height / 2) + (this.island.height / 2))) {
+            p2.x = this.crystal.image.x;
+            p2.y = this.crystal.image.y;
+            if (this.distance(p1, p2) < ((this.player.width / 2) + (this.crystal.width / 2))) {
                 createjs.Sound.play("yay");
                 this.scoreboard.score += 100;
-                this.island.reset();
+                this.crystal.reset();
+            }
+        };
+
+        // check collision between player and lifeOrb
+        Collision.prototype.playerAndLifeorb = function () {
+            var p1 = new createjs.Point();
+            var p2 = new createjs.Point();
+            p1.x = this.player.image.x;
+            p1.y = this.player.image.y;
+            p2.x = this.lifeOrb.image.x;
+            p2.y = this.lifeOrb.image.y;
+            if (this.distance(p1, p2) < ((this.player.width / 2) + (this.lifeOrb.width / 2))) {
+                createjs.Sound.play("yay");
+                this.scoreboard.lives += 1;
+                this.lifeOrb.reset();
             }
         };
 
@@ -65,7 +82,8 @@ var managers;
             for (var count = 0; count < constants.CLOUD_NUM; count++) {
                 this.planeAndCloud(this.clouds[count]);
             }
-            this.planeAndIsland();
+            this.playerAndCrystal();
+            this.playerAndLifeorb();
         };
         return Collision;
     })();

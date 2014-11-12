@@ -1,5 +1,6 @@
 ﻿/// <reference path="../objects/cloud.ts" />
-/// <reference path="../objects/island.ts" />
+/// <reference path="../objects/crystal.ts" />
+/// <reference path="../objects/lifeOrb.ts" />
 /// <reference path="../objects/player.ts" />
 /// <reference path="../objects/scoreboard.ts" />
 
@@ -8,13 +9,15 @@ module managers {
     export class Collision {
         // class variables
         private player: objects.player;
-        private island: objects.Island;
+        private crystal: objects.Crystal;
+        private lifeOrb: objects.lifeOrb;
         private clouds = [];
         private scoreboard: objects.Scoreboard;
 
-        constructor(player: objects.player, island: objects.Island, clouds, scoreboard: objects.Scoreboard) {
+        constructor(player: objects.player, crystal: objects.Crystal, lifeOrb: objects.lifeOrb, clouds, scoreboard: objects.Scoreboard) {
             this.player = player;
-            this.island = island;
+            this.crystal = crystal;
+            this.lifeOrb = lifeOrb;
             this.clouds = clouds;
             this.scoreboard = scoreboard;
         }
@@ -44,25 +47,40 @@ module managers {
             p1.y = this.player.image.y;
             p2.x = cloud.image.x;
             p2.y = cloud.image.y;
-            if (this.distance(p1, p2) < ((this.player.height / 2) + (cloud.height / 2))) {
+            if (this.distance(p1, p2) < ((this.player.width / 2) + (cloud.width / 2))) {
                 createjs.Sound.play("thunder");
                 this.scoreboard.lives -= 1;
                 cloud.reset();
             }
         }
 
-        // check collision between plane and island
-        private planeAndIsland() {
+        // check collision between plane and crystal
+        private playerAndCrystal() {
             var p1: createjs.Point = new createjs.Point();
             var p2: createjs.Point = new createjs.Point();
             p1.x = this.player.image.x;
             p1.y = this.player.image.y;
-            p2.x = this.island.image.x;
-            p2.y = this.island.image.y;
-            if (this.distance(p1, p2) < ((this.player.height / 2) + (this.island.height / 2))) {
+            p2.x = this.crystal.image.x;
+            p2.y = this.crystal.image.y;
+            if (this.distance(p1, p2) < ((this.player.width / 2) + (this.crystal.width / 2))) {
                 createjs.Sound.play("yay");
                 this.scoreboard.score += 100;
-                this.island.reset();
+                this.crystal.reset();
+            }
+        }
+
+        // check collision between player and lifeOrb
+        private playerAndLifeorb() {
+            var p1: createjs.Point = new createjs.Point();
+            var p2: createjs.Point = new createjs.Point();
+            p1.x = this.player.image.x;
+            p1.y = this.player.image.y;
+            p2.x = this.lifeOrb.image.x;
+            p2.y = this.lifeOrb.image.y;
+            if (this.distance(p1, p2) < ((this.player.width / 2) + (this.lifeOrb.width / 2))) {
+                createjs.Sound.play("yay");
+                this.scoreboard.lives += 1;
+                this.lifeOrb.reset();
             }
         }
 
@@ -71,7 +89,8 @@ module managers {
             for (var count = 0; count < constants.CLOUD_NUM; count++) {
                 this.planeAndCloud(this.clouds[count]);
             }
-            this.planeAndIsland();
+            this.playerAndCrystal();
+            this.playerAndLifeorb();
         }
     }
 } 

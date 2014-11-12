@@ -4,7 +4,7 @@
     var assetManifest = [
         { id: "loading", src: "assets/images/loading.jpg" },
         { id: "ocean", src: "assets/images/ocean_vert.gif" },
-        { id: "land", src: "assets/images/bigland.jpg" },
+        { id: "land", src: "assets/images/background.png" },
         { id: "engine", src: "assets/sounds/engine.ogg" },
         { id: "thunder", src: "assets/sounds/thunder.ogg" },
         { id: "yay", src: "assets/sounds/yay.ogg" }
@@ -44,6 +44,38 @@
         }
     };
 
+    //hazard sprite sheet data object
+    var hazardsSheetData = {
+        "images": ["assets/images/hazards.png"],
+        "frames": [
+            [27, 289, 68, 32],
+            [26, 349, 70, 36],
+            [221, 33, 32, 60],
+            [154, 28, 39, 69],
+            [91, 64, 34, 30]
+        ],
+        "animations": {
+            "hor pit": [0],
+            "hor firepit": [1],
+            "vert pit": [2],
+            "vert firepit": [3],
+            "stones": [4]
+        }
+    };
+
+    //collectible sprite sheet data object
+    var collectablesSheetData = {
+        "images": ["assets/images/collectables.png"],
+        "frames": [
+            [94, 63, 27, 30],
+            [24, 29, 36, 32]
+        ],
+        "animations": {
+            "life orb": [0],
+            "crystal": [1]
+        }
+    };
+
     // Asset Manager Class
     var Assets = (function () {
         function Assets() {
@@ -55,6 +87,8 @@
             this.loader.loadManifest(assetManifest);
             this.atlas = new createjs.SpriteSheet(spriteSheetData);
             this.character = new createjs.SpriteSheet(characterSheetData);
+            this.collectables = new createjs.SpriteSheet(collectablesSheetData);
+            this.hazards = new createjs.SpriteSheet(hazardsSheetData);
         };
         return Assets;
     })();

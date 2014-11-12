@@ -1,6 +1,7 @@
 ﻿/// <reference path="../objects/button.ts" />
 /// <reference path="../objects/cloud.ts" />
-/// <reference path="../objects/island.ts" />
+/// <reference path="../objects/crystal.ts" />
+/// <reference path="../objects/lifeOrb.ts" />
 /// <reference path="../objects/label.ts" />
 /// <reference path="../objects/land.ts" />
 /// <reference path="../objects/player.ts" />
@@ -10,7 +11,8 @@ var states;
 (function (states) {
     function playState() {
         land.update();
-        island.update();
+        crystal.update();
+        lifeOrb.update();
         player.update();
 
         for (var count = 0; count < constants.CLOUD_NUM; count++) {
@@ -38,7 +40,8 @@ var states;
 
         // Instantiate Game Objects
         land = new objects.Land(stage, game);
-        island = new objects.Island(stage, game);
+        crystal = new objects.Crystal(stage, game);
+        lifeOrb = new objects.lifeOrb(stage, game);
         player = new objects.player(stage, game);
 
         // Show Cursor
@@ -52,7 +55,7 @@ var states;
         scoreboard = new objects.Scoreboard(stage, game);
 
         // Instantiate Collision Manager
-        collision = new managers.Collision(player, island, clouds, scoreboard);
+        collision = new managers.Collision(player, crystal, lifeOrb, clouds, scoreboard);
 
         stage.addChild(game);
     }
