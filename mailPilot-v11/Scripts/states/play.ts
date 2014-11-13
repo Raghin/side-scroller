@@ -7,12 +7,14 @@
 /// <reference path="../objects/player.ts" />
 /// <reference path="../objects/scoreboard.ts" />
 /// <reference path="../managers/collision.ts" />
+/// <reference path="gameover.ts" />
 module states {
     export function playState() {
         land.update();
         crystal.update();
         lifeOrb.update();
         player.update();
+        
 
         for (var count = 0; count < constants.HAZARDS_NUM; count++) {
             hazards[count].update();
@@ -30,12 +32,16 @@ module states {
             changeState(currentState);
         }
     }
-
+    var run: number = 0;
     // play state Function
     export function play(): void {
         // Declare new Game Container
         game = new createjs.Container();
-
+        if(run == 1)
+            this.dead.stop();
+        // create the background music
+        overworld: createjs.SoundInstance;
+        run = 1;
         // Instantiate Game Objects
         land = new objects.Land(stage, game);
         crystal = new objects.Crystal(stage, game);
@@ -57,5 +63,6 @@ module states {
         collision = new managers.Collision(player, crystal, lifeOrb, hazards, scoreboard);
 
         stage.addChild(game);
+        this.overworld = createjs.Sound.play('overworld', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
     }
 }

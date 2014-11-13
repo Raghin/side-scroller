@@ -4,8 +4,10 @@
         { id: "loading", src: "assets/images/loading.jpg" },
         { id: "ocean", src: "assets/images/ocean_vert.gif" },
         { id: "land", src: "assets/images/background.png" },
-        { id: "engine", src: "assets/sounds/engine.ogg" },
-        { id: "thunder", src: "assets/sounds/thunder.ogg" },
+        { id: "title", src: "assets/images/title screen logo.png" },
+        { id: "overworld", src: "assets/sounds/overworld.mp3" },
+        { id: "dead", src: "assets/sounds/Game Over.mp3" },
+        { id: "hurt", src: "assets/sounds/hurt.wav" },
         { id: "score", src: "assets/sounds/crystal grab.wav" },
         { id: "life", src: "assets/sounds/orb grab.wav" }
     ];

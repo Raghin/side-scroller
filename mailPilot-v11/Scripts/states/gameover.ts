@@ -6,6 +6,7 @@
 /// <reference path="../objects/land.ts" />
 /// <reference path="../objects/player.ts" />
 /// <reference path="../objects/scoreboard.ts" />
+/// <reference path="play.ts" />
 module states {
     export function gameOverState() {
         land.update();
@@ -25,7 +26,9 @@ module states {
         var gameOverLabel: objects.Label;
         var finalScoreLabel: objects.Label;
         var finalScore: objects.Label;
-
+        this.overworld.stop();
+        //create gameover music
+        dead: createjs.SoundInstance;
         // Declare new Game Container
         game = new createjs.Container();
 
@@ -53,6 +56,6 @@ module states {
         tryAgain.addEventListener("click", tryAgainClicked);
 
         stage.addChild(game);
-
+        this.dead = createjs.Sound.play('dead', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
     }
 }

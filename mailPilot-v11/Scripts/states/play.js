@@ -7,6 +7,7 @@
 /// <reference path="../objects/player.ts" />
 /// <reference path="../objects/scoreboard.ts" />
 /// <reference path="../managers/collision.ts" />
+/// <reference path="gameover.ts" />
 var states;
 (function (states) {
     function playState() {
@@ -32,11 +33,18 @@ var states;
         }
     }
     states.playState = playState;
+    var run = 0;
 
     // play state Function
     function play() {
         // Declare new Game Container
         game = new createjs.Container();
+        if (run == 1)
+            this.dead.stop();
+
+        overworld:
+        createjs.SoundInstance;
+        run = 1;
 
         // Instantiate Game Objects
         land = new objects.Land(stage, game);
@@ -58,6 +66,7 @@ var states;
         collision = new managers.Collision(player, crystal, lifeOrb, hazards, scoreboard);
 
         stage.addChild(game);
+        this.overworld = createjs.Sound.play('overworld', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
     }
     states.play = play;
 })(states || (states = {}));

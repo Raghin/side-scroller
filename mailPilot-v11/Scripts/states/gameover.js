@@ -6,6 +6,7 @@
 /// <reference path="../objects/land.ts" />
 /// <reference path="../objects/player.ts" />
 /// <reference path="../objects/scoreboard.ts" />
+/// <reference path="play.ts" />
 var states;
 (function (states) {
     function gameOverState() {
@@ -28,6 +29,10 @@ var states;
         var gameOverLabel;
         var finalScoreLabel;
         var finalScore;
+        this.overworld.stop();
+
+        dead:
+        createjs.SoundInstance;
 
         // Declare new Game Container
         game = new createjs.Container();
@@ -56,6 +61,7 @@ var states;
         tryAgain.addEventListener("click", tryAgainClicked);
 
         stage.addChild(game);
+        this.dead = createjs.Sound.play('dead', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
     }
     states.gameOver = gameOver;
 })(states || (states = {}));

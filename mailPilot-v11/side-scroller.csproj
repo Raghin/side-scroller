@@ -66,13 +66,19 @@
     <Content Include="assets\images\character atlas.png" />
     <Content Include="assets\images\cloud.png" />
     <Content Include="assets\images\collectables.png" />
+    <Content Include="assets\images\final score logo.png" />
+    <Content Include="assets\images\game over logo.png" />
     <Content Include="assets\images\hazards.png" />
     <Content Include="assets\images\island.png" />
     <Content Include="assets\images\ocean_vert.gif" />
     <Content Include="assets\images\plane.png" />
     <Content Include="assets\images\sideplane.gif" />
+    <Content Include="assets\images\title screen logo.png" />
     <Content Include="assets\sounds\crystal grab.wav" />
+    <Content Include="assets\sounds\Game Over.mp3" />
+    <Content Include="assets\sounds\hurt.wav" />
     <Content Include="assets\sounds\orb grab.wav" />
+    <Content Include="assets\sounds\overworld.mp3" />
     <Content Include="assets\sounds\yay.ogg" />
     <Content Include="assets\sounds\thunder.ogg" />
     <Content Include="assets\sounds\engine.ogg" />
@@ -134,6 +140,7 @@
     <TypeScriptCompile Include="Scripts\objects\scoreboard.ts" />
     <TypeScriptCompile Include="Scripts\lib\preloadjs.d.ts" />
     <TypeScriptCompile Include="Scripts\lib\soundjs.d.ts" />
+    <TypeScriptCompile Include="Scripts\objects\shinyLabel.ts" />
     <TypeScriptCompile Include="Scripts\states\gameover.ts" />
     <TypeScriptCompile Include="Scripts\states\menu.ts" />
     <TypeScriptCompile Include="Scripts\states\play.ts" />

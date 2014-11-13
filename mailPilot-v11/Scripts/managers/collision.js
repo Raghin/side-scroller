@@ -61,7 +61,7 @@ var managers;
             p2.x = hazards.image.x;
             p2.y = hazards.image.y;
             if (this.distance(p1, p2) < ((this.player.width / 2) + (hazards.width / 2))) {
-                createjs.Sound.play("thunder");
+                createjs.Sound.play("hurt");
                 this.scoreboard.lives -= 1;
                 hazards.reset();
             }
