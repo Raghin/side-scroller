@@ -32,7 +32,7 @@ module objects {
 
         reset() {
             this.image.y = Math.floor(Math.random() * this.stage.canvas.height);
-            this.image.x = +this.stage.canvas.width;
+            this.image.x = this.stage.canvas.width + Math.floor(Math.random() * this.stage.canvas.width);
         }
 
         destroy() {

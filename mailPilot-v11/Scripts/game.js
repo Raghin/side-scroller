@@ -1,6 +1,6 @@
 ﻿/// <reference path="constants.ts" />
 /// <reference path="managers/asset.ts" />
-/// <reference path="objects/cloud.ts" />
+/// <reference path="objects/hazards.ts" />
 /// <reference path="objects/crystal.ts" />
 /// <reference path="objects/lifeOrb.ts" />
 /// <reference path="objects/land.ts" />
@@ -22,7 +22,7 @@ var player;
 
 var crystal;
 var lifeOrb;
-var clouds = [];
+var hazards = [];
 var scoreboard;
 
 var collision;

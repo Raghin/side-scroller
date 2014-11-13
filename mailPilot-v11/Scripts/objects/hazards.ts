@@ -1,17 +1,18 @@
 ﻿/// <reference path="../managers/asset.ts" />
+/// <reference path="lifeOrb.ts" />
 module objects {
-    // lifeOrb Class
-    export class lifeOrb {
+    // Cloud class
+    export class Hazards {
         image: createjs.Sprite;
         stage: createjs.Stage;
         game: createjs.Container;
-        height: number;
         width: number;
+        height: number;
         dx: number;
         constructor(stage: createjs.Stage, game: createjs.Container) {
             this.stage = stage;
             this.game = game;
-            this.image = new createjs.Sprite(managers.Assets.collectables, "life orb");
+            this.image = new createjs.Sprite(managers.Assets.hazards, "stones");
             this.width = this.image.getBounds().width;
             this.height = this.image.getBounds().height;
             this.image.regX = this.width / 2;
@@ -39,5 +40,4 @@ module objects {
             game.removeChild(this.image);
         }
     }
-
 }

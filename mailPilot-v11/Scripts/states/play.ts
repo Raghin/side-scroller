@@ -1,5 +1,5 @@
 ﻿/// <reference path="../objects/button.ts" />
-/// <reference path="../objects/cloud.ts" />
+/// <reference path="../objects/hazards.ts" />
 /// <reference path="../objects/crystal.ts" />
 /// <reference path="../objects/lifeOrb.ts" />
 /// <reference path="../objects/label.ts" />
@@ -14,8 +14,8 @@ module states {
         lifeOrb.update();
         player.update();
 
-        for (var count = 0; count < constants.CLOUD_NUM; count++) {
-            clouds[count].update();
+        for (var count = 0; count < constants.HAZARDS_NUM; count++) {
+            hazards[count].update();
         }
 
         collision.update();
@@ -45,16 +45,16 @@ module states {
         // Show Cursor
         stage.cursor = "none";
 
-        // Create multiple clouds
-        for (var count = 0; count < constants.CLOUD_NUM; count++) {
-            clouds[count] = new objects.Cloud(stage, game);
+        // Create multiple hazards
+        for (var count = 0; count < constants.HAZARDS_NUM; count++) {
+            hazards[count] = new objects.Hazards(stage, game);
         }
 
         // Display Scoreboard
         scoreboard = new objects.Scoreboard(stage, game);
 
         // Instantiate Collision Manager
-        collision = new managers.Collision(player, crystal, lifeOrb, clouds, scoreboard);
+        collision = new managers.Collision(player, crystal, lifeOrb, hazards, scoreboard);
 
         stage.addChild(game);
     }

@@ -7,7 +7,8 @@
         { id: "land", src: "assets/images/background.png" },
         { id: "engine", src: "assets/sounds/engine.ogg" },
         { id: "thunder", src: "assets/sounds/thunder.ogg" },
-        { id: "yay", src: "assets/sounds/yay.ogg" }
+        { id: "score", src: "assets/sounds/crystal grab.wav" },
+        { id: "life", src: "assets/sounds/orb grab.wav" }
     ];
 
     // SpriteSheet Data Object

@@ -1,4 +1,4 @@
-﻿/// <reference path="../objects/cloud.ts" />
+﻿/// <reference path="../objects/hazards.ts" />
 /// <reference path="../objects/crystal.ts" />
 /// <reference path="../objects/lifeOrb.ts" />
 /// <reference path="../objects/player.ts" />
@@ -7,12 +7,12 @@ var managers;
 (function (managers) {
     // Collision Manager Class
     var Collision = (function () {
-        function Collision(player, crystal, lifeOrb, clouds, scoreboard) {
-            this.clouds = [];
+        function Collision(player, crystal, lifeOrb, hazards, scoreboard) {
+            this.hazards = [];
             this.player = player;
             this.crystal = crystal;
             this.lifeOrb = lifeOrb;
-            this.clouds = clouds;
+            this.hazards = hazards;
             this.scoreboard = scoreboard;
         }
         // Utility method - Distance calculation between two points
@@ -32,22 +32,42 @@ var managers;
             return result;
         };
 
-        // check collision between plane and any cloud object
-        Collision.prototype.planeAndCloud = function (cloud) {
+        //check for overlap between items
+        Collision.prototype.overlap = function (hazards) {
+            var p1 = new createjs.Point();
+            var p2 = new createjs.Point();
+            var p3 = new createjs.Point();
+            p1.x = this.crystal.image.x;
+            p1.y = this.crystal.image.y;
+            p2.x = hazards.image.x;
+            p2.y = hazards.image.y;
+            p3.x = this.lifeOrb.image.x;
+            p3.y = this.lifeOrb.image.y;
+            if (this.distance(p1, p2) < ((this.crystal.width / 2) + (hazards.width / 2))) {
+                crystal.reset();
+                hazards.reset();
+            } else if (this.distance(p2, p3) < ((this.lifeOrb.width / 2) + (hazards.width / 2))) {
+                lifeOrb.reset();
+                hazards.reset();
+            }
+        };
+
+        // check collision between plane and any hazards object
+        Collision.prototype.playerAndhazards = function (hazards) {
             var p1 = new createjs.Point();
             var p2 = new createjs.Point();
             p1.x = this.player.image.x;
             p1.y = this.player.image.y;
-            p2.x = cloud.image.x;
-            p2.y = cloud.image.y;
-            if (this.distance(p1, p2) < ((this.player.width / 2) + (cloud.width / 2))) {
+            p2.x = hazards.image.x;
+            p2.y = hazards.image.y;
+            if (this.distance(p1, p2) < ((this.player.width / 2) + (hazards.width / 2))) {
                 createjs.Sound.play("thunder");
                 this.scoreboard.lives -= 1;
-                cloud.reset();
+                hazards.reset();
             }
         };
 
-        // check collision between plane and crystal
+        // check collision between player and crystal
         Collision.prototype.playerAndCrystal = function () {
             var p1 = new createjs.Point();
             var p2 = new createjs.Point();
@@ -56,7 +76,7 @@ var managers;
             p2.x = this.crystal.image.x;
             p2.y = this.crystal.image.y;
             if (this.distance(p1, p2) < ((this.player.width / 2) + (this.crystal.width / 2))) {
-                createjs.Sound.play("yay");
+                createjs.Sound.play("score");
                 this.scoreboard.score += 100;
                 this.crystal.reset();
             }
@@ -71,7 +91,7 @@ var managers;
             p2.x = this.lifeOrb.image.x;
             p2.y = this.lifeOrb.image.y;
             if (this.distance(p1, p2) < ((this.player.width / 2) + (this.lifeOrb.width / 2))) {
-                createjs.Sound.play("yay");
+                createjs.Sound.play("life");
                 this.scoreboard.lives += 1;
                 this.lifeOrb.reset();
             }
@@ -79,8 +99,9 @@ var managers;
 
         // Utility Function to Check Collisions
         Collision.prototype.update = function () {
-            for (var count = 0; count < constants.CLOUD_NUM; count++) {
-                this.planeAndCloud(this.clouds[count]);
+            for (var count = 0; count < constants.HAZARDS_NUM; count++) {
+                this.playerAndhazards(this.hazards[count]);
+                this.overlap(this.hazards[count]);
             }
             this.playerAndCrystal();
             this.playerAndLifeorb();
