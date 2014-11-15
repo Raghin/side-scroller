@@ -7,6 +7,12 @@
 /// <reference path="../objects/lifeOrb.ts" />
 /// <reference path="../objects/player.ts" />
 /// <reference path="../objects/scoreboard.ts" />
+/**
+Author: Peter Smith
+Last Modified by: Peter Smith
+Last Modified: November 15, 2014
+Description: The collision manager that subtracts life from player and "tries" to prevent object overlapping
+**/
 var managers;
 (function (managers) {
     // Collision Manager Class

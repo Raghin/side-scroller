@@ -9,7 +9,6 @@ module managers {
     // Image and Sound Manifest;
     var assetManifest = [
         { id: "loading", src: "assets/images/loading.jpg" },
-        { id: "ocean", src: "assets/images/ocean_vert.gif" },
         { id: "land", src: "assets/images/background.png" },
         { id: "title", src: "assets/images/title screen logo.png" },
         { id: "overworld", src: "assets/sounds/overworld.mp3" },
