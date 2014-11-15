@@ -1,4 +1,11 @@
 ﻿/// <reference path="../managers/asset.ts" />
+
+/**
+    Author: Peter Smith
+    Last Modified by: Peter Smith
+    Last Modified: November 15, 2014
+    Description: The main players information
+**/
 module objects {
     // Player Class
     export class player {

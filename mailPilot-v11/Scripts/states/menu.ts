@@ -1,12 +1,18 @@
 ﻿/// <reference path="../constants.ts" />
 /// <reference path="../objects/scoreboard.ts" />
-/// <reference path="../objects/plane.ts" />
 /// <reference path="../objects/player.ts" />
 /// <reference path="../objects/land.ts" />
 /// <reference path="../objects/crystal.ts" />
-/// <reference path="../objects/cloud.ts" />
 /// <reference path="../objects/button.ts" />
 /// <reference path="../objects/label.ts" />
+
+/**
+    Author: Peter Smith
+    Last Modified by: Peter Smith
+    Last Modified: November 15, 2014
+    Description: The main menu state
+**/
+
 module states {
     export function playButtonClicked(event: MouseEvent) {
         stage.removeChild(game);
@@ -24,6 +30,8 @@ module states {
 
     export function menu() {
         var gameNameLabel: objects.Label;
+        var gameInstructionLabel: objects.Label;
+        var instructions: objects.Label;
 
         // Declare new Game Container
         game = new createjs.Container();
@@ -35,12 +43,28 @@ module states {
         // Show Cursor
         stage.cursor = "default";
 
-        // Display Game Over
-        gameNameLabel = new objects.Label(stage.canvas.width / 2, 40, "Crystal Plains");
+        // Display Game title
+        gameNameLabel = new objects.Label(stage.canvas.width / 2, 20, "Crystal Plains");
         game.addChild(gameNameLabel);
 
-        // Display Play Again Button
-        playButton = new objects.Button(stage.canvas.width / 2, 300, "playButton");
+        // display instructions label
+        gameInstructionLabel = new objects.Label(stage.canvas.width / 2, 70, "Instructions:");
+        game.addChild(gameInstructionLabel);
+
+        // display instructions
+        instructions = new objects.Label(stage.canvas.width / 2, 110, "1) Collect crystals");
+        game.addChild(instructions);
+        instructions = new objects.Label(stage.canvas.width / 2, 150, "2) Collect lifeOrbs");
+        game.addChild(instructions);
+        instructions = new objects.Label(stage.canvas.width / 2, 190, "3) Survive");
+        game.addChild(instructions);
+        instructions = new objects.Label(stage.canvas.width / 2, 230, "Avoid: stones -1,");
+        game.addChild(instructions);
+        instructions = new objects.Label(stage.canvas.width / 2, 270, "pits -2, firepits -3");
+        game.addChild(instructions);
+
+        // Display Play Button
+        playButton = new objects.Button(stage.canvas.width / 2, 380, "playButton");
         game.addChild(playButton);
         playButton.addEventListener("click", playButtonClicked);
 

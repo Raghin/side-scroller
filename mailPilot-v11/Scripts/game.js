@@ -1,6 +1,10 @@
 ﻿/// <reference path="constants.ts" />
 /// <reference path="managers/asset.ts" />
 /// <reference path="objects/hazards.ts" />
+/// <reference path="objects/vertPit.ts" />
+/// <reference path="objects/horPit.ts" />
+/// <reference path="objects/vertFirePit.ts" />
+/// <reference path="objects/horFirePit.ts" />
 /// <reference path="objects/crystal.ts" />
 /// <reference path="objects/lifeOrb.ts" />
 /// <reference path="objects/land.ts" />
@@ -12,6 +16,12 @@
 /// <reference path="states/play.ts" />
 /// <reference path="states/menu.ts" />
 /// <reference path="states/gameover.ts" />
+/**
+Author: Peter Smith
+Last Modified by: Peter Smith
+Last Modified: November 15, 2014
+Description: The game container script
+**/
 var stage;
 var game;
 
@@ -20,7 +30,11 @@ var player;
 
 var crystal;
 var lifeOrb;
-var hazards = [];
+var stones = [];
+var vertPit = [];
+var horPit = [];
+var vertFirePit = [];
+var horFirePit = [];
 var scoreboard;
 
 var collision;

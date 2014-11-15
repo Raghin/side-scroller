@@ -1,4 +1,11 @@
-﻿module managers {
+﻿/**
+    Author: Peter Smith
+    Last Modified by: Peter Smith
+    Last Modified: November 15, 2014
+    Description: The games asset manager, manages all objects in game with convenient id's so as not to repeat long code
+**/
+
+module managers {
     // Image and Sound Manifest;
     var assetManifest = [
         { id: "loading", src: "assets/images/loading.jpg" },
@@ -50,11 +57,11 @@
     var hazardsSheetData = {
         "images": ["assets/images/hazards.png"],
         "frames": [
-            [27, 289, 68, 32],
-            [26, 349, 70, 36],
-            [221, 33, 32, 60],
-            [154, 28, 39, 69],
-            [91, 64, 34, 30]
+            [28, 290, 67, 31],
+            [27, 350, 69, 35],
+            [222, 34, 31, 59],
+            [155, 29, 38, 68],
+            [92, 65, 33, 29]
         ],
         "animations": {
             "hor pit": [0],

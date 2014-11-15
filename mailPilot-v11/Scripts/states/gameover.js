@@ -1,12 +1,17 @@
 ﻿/// <reference path="../constants.ts" />
 /// <reference path="../objects/button.ts" />
-/// <reference path="../objects/cloud.ts" />
 /// <reference path="../objects/crystal.ts" />
 /// <reference path="../objects/label.ts" />
 /// <reference path="../objects/land.ts" />
 /// <reference path="../objects/player.ts" />
 /// <reference path="../objects/scoreboard.ts" />
 /// <reference path="play.ts" />
+/**
+Author: Peter Smith
+Last Modified by: Peter Smith
+Last Modified: November 15, 2014
+Description: The gameover state
+**/
 var states;
 (function (states) {
     function gameOverState() {

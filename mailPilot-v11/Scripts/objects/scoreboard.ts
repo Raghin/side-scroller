@@ -1,4 +1,11 @@
-﻿module objects {
+﻿
+/**
+    Author: Peter Smith
+    Last Modified by: Peter Smith
+    Last Modified: November 15, 2014
+    Description: The games scoreboard
+**/
+module objects {
     // Scoreboard Class
     export class Scoreboard {
         stage: createjs.Stage;

@@ -1,5 +1,9 @@
 ﻿/// <reference path="../objects/button.ts" />
 /// <reference path="../objects/hazards.ts" />
+/// <reference path="../objects/vertPit.ts" />
+/// <reference path="../objects/horPit.ts" />
+/// <reference path="../objects/vertFirePit.ts" />
+/// <reference path="../objects/horFirePit.ts" />
 /// <reference path="../objects/crystal.ts" />
 /// <reference path="../objects/lifeOrb.ts" />
 /// <reference path="../objects/label.ts" />
@@ -8,6 +12,12 @@
 /// <reference path="../objects/scoreboard.ts" />
 /// <reference path="../managers/collision.ts" />
 /// <reference path="gameover.ts" />
+/**
+Author: Peter Smith
+Last Modified by: Peter Smith
+Last Modified: November 15, 2014
+Description: The play state
+**/
 var states;
 (function (states) {
     function playState() {
@@ -17,7 +27,11 @@ var states;
         player.update();
 
         for (var count = 0; count < constants.HAZARDS_NUM; count++) {
-            hazards[count].update();
+            stones[count].update();
+            vertPit[count].update();
+            horPit[count].update();
+            vertFirePit[count].update();
+            horFirePit[count].update();
         }
 
         collision.update();
@@ -56,14 +70,18 @@ var states;
         stage.cursor = "none";
 
         for (var count = 0; count < constants.HAZARDS_NUM; count++) {
-            hazards[count] = new objects.Hazards(stage, game);
+            stones[count] = new objects.Hazards(stage, game);
+            horPit[count] = new objects.horPit(stage, game);
+            vertPit[count] = new objects.vertPit(stage, game);
+            horFirePit[count] = new objects.horFirePit(stage, game);
+            vertFirePit[count] = new objects.vertFirePit(stage, game);
         }
 
         // Display Scoreboard
         scoreboard = new objects.Scoreboard(stage, game);
 
         // Instantiate Collision Manager
-        collision = new managers.Collision(player, crystal, lifeOrb, hazards, scoreboard);
+        collision = new managers.Collision(player, crystal, lifeOrb, stones, vertPit, horPit, vertFirePit, horFirePit, scoreboard);
 
         stage.addChild(game);
         this.overworld = createjs.Sound.play('overworld', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);

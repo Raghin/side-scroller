@@ -1,4 +1,10 @@
-﻿var objects;
+﻿/**
+Author: Peter Smith
+Last Modified by: Peter Smith
+Last Modified: November 15, 2014
+Description: The games scoreboard
+**/
+var objects;
 (function (objects) {
     // Scoreboard Class
     var Scoreboard = (function () {

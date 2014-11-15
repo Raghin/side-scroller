@@ -1,4 +1,11 @@
 ﻿/// <reference path="../constants.ts" />
+
+/**
+    Author: Peter Smith
+    Last Modified by: Peter Smith
+    Last Modified: November 15, 2014
+    Description: Not yet implimented
+**/
 module objects {
     export class shinyLabel extends createjs.Text {
         constructor(x:number,y:number,labelText:string) {

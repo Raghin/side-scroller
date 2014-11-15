@@ -1,5 +1,12 @@
 ﻿/// <reference path="../constants.ts" />
 /// <reference path="../managers/asset.ts" />
+
+/**
+    Author: Peter Smith
+    Last Modified by: Peter Smith
+    Last Modified: November 15, 2014
+    Description: The button handlers
+**/
 module objects {
     export class Button extends createjs.Sprite {
         constructor(x:number, y:number, buttonIDString: string) {

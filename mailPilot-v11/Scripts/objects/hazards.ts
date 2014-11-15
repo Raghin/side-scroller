@@ -1,5 +1,12 @@
 ﻿/// <reference path="../managers/asset.ts" />
 /// <reference path="lifeOrb.ts" />
+
+/**
+    Author: Peter Smith
+    Last Modified by: Peter Smith
+    Last Modified: November 15, 2014
+    Description: A stone hazard object
+**/
 module objects {
     // Cloud class
     export class Hazards {
