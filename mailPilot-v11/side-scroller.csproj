@@ -60,13 +60,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\images\atlas.png" />
-    <Content Include="assets\images\background.png" />
+    <Content Include="assets\images\plains.png" />
     <Content Include="assets\images\character atlas.png" />
     <Content Include="assets\images\collectables.png" />
+    <Content Include="assets\images\desert.png" />
     <Content Include="assets\images\final score logo.png" />
     <Content Include="assets\images\game over logo.png" />
     <Content Include="assets\images\hazards.png" />
     <Content Include="assets\images\title screen logo.png" />
+    <Content Include="assets\images\wasteland.png" />
     <Content Include="assets\sounds\crystal grab.wav" />
     <Content Include="assets\sounds\Game Over.mp3" />
     <Content Include="assets\sounds\hurt.wav" />
