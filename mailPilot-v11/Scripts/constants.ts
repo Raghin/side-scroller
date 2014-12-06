@@ -12,7 +12,8 @@ module constants {
     export var GAME_OVER_STATE: number = 2;
 
     // Game Constants
-    export var HAZARDS_NUM: number = 3;
+    export var HAZARDS_NUM: number = 10;
+    export var OBJECTS_NUM: number = 0;
     //export var CRYSTALS_NUM: number = 2;
     export var LABEL_FONT = "30px Consolas";
     export var LABEL_COLOUR = "#FFFF00";

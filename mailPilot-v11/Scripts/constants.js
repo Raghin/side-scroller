@@ -12,7 +12,8 @@ var constants;
     constants.GAME_OVER_STATE = 2;
 
     // Game Constants
-    constants.HAZARDS_NUM = 3;
+    constants.HAZARDS_NUM = 10;
+    constants.OBJECTS_NUM = 0;
 
     //export var CRYSTALS_NUM: number = 2;
     constants.LABEL_FONT = "30px Consolas";

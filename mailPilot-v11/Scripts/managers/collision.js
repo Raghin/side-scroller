@@ -140,46 +140,26 @@ var managers;
             }
         };
 
-        // check collision between plane and any hazards object
-        Collision.prototype.playerAndhazards = function (hazards, vertPit, horPit, vertFirePit, horFirePit) {
+        Collision.prototype.playerAndHazard = function (hazards) {
             var p1 = new createjs.Point();
             var p2 = new createjs.Point();
-            var p3 = new createjs.Point();
-            var p4 = new createjs.Point();
-            var p5 = new createjs.Point();
-            var p6 = new createjs.Point();
             p1.x = this.player.image.x;
             p1.y = this.player.image.y;
             p2.x = hazards.image.x;
             p2.y = hazards.image.y;
-            p3.x = vertPit.image.x;
-            p3.y = vertPit.image.y;
-            p4.x = horPit.image.x;
-            p4.y = horPit.image.y;
-            p5.x = vertFirePit.image.x;
-            p5.y = vertFirePit.image.y;
-            p6.x = horFirePit.image.x;
-            p6.y = horFirePit.image.y;
             if (this.distance(p1, p2) < ((this.player.width / 2) + (hazards.width / 2))) {
                 createjs.Sound.play("hurt");
-                this.scoreboard.lives -= 1;
+                if (hazards.name == "stones")
+                    this.scoreboard.lives -= 1;
+                else if (hazards.name == "vert pit")
+                    this.scoreboard.lives -= 2;
+                else if (hazards.name == "hor pit")
+                    this.scoreboard.lives -= 2;
+                else if (hazards.name == "vert firepit")
+                    this.scoreboard.lives -= 3;
+                else if (hazards.name == "hor firepit")
+                    this.scoreboard.lives -= 3;
                 hazards.reset();
-            } else if (this.distance(p1, p3) < ((this.player.width / 2) + (vertPit.width / 2))) {
-                createjs.Sound.play("hurt");
-                this.scoreboard.lives -= 2;
-                vertPit.reset();
-            } else if (this.distance(p1, p4) < ((this.player.width / 2) + (horPit.width / 2))) {
-                createjs.Sound.play("hurt");
-                this.scoreboard.lives -= 2;
-                horPit.reset();
-            } else if (this.distance(p1, p5) < ((this.player.width / 2) + (vertFirePit.width / 2))) {
-                createjs.Sound.play("hurt");
-                this.scoreboard.lives -= 3;
-                vertFirePit.reset();
-            } else if (this.distance(p1, p6) < ((this.player.width / 2) + (horFirePit.width / 2))) {
-                createjs.Sound.play("hurt");
-                this.scoreboard.lives -= 3;
-                horFirePit.reset();
             }
         };
 
@@ -216,8 +196,7 @@ var managers;
         // Utility Function to Check Collisions
         Collision.prototype.update = function () {
             for (var count = 0; count < constants.HAZARDS_NUM; count++) {
-                this.playerAndhazards(this.hazards[count], this.vertPit[count], this.horPit[count], this.vertFirePit[count], this.horFirePit[count]);
-                this.overlap(this.hazards[count], this.vertPit[count], this.horPit[count], this.vertFirePit[count], this.horFirePit[count]);
+                this.playerAndHazard(this.hazards[count]);
             }
             this.playerAndCrystal();
             this.playerAndLifeorb();

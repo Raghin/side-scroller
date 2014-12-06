@@ -8,7 +8,7 @@
     Description: A horizontal Pit
 **/
 module objects {
-    // Cloud class
+    // horPit class
     export class horPit {
         image: createjs.Sprite;
         stage: createjs.Stage;

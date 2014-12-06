@@ -26,12 +26,16 @@ var states;
         lifeOrb.update();
         player.update();
 
-        for (var count = 0; count < constants.HAZARDS_NUM; count++) {
+        for (var count = 0; count < constants.OBJECTS_NUM; count++) {
             stones[count].update();
             vertPit[count].update();
             horPit[count].update();
             vertFirePit[count].update();
             horFirePit[count].update();
+        }
+
+        for (var count = 0; count < constants.HAZARDS_NUM; count++) {
+            stones[count].update();
         }
 
         collision.update();
@@ -69,12 +73,16 @@ var states;
         // Show Cursor
         stage.cursor = "none";
 
-        for (var count = 0; count < constants.HAZARDS_NUM; count++) {
+        for (var count = 0; count < constants.OBJECTS_NUM; count++) {
             stones[count] = new objects.Hazards(stage, game);
             horPit[count] = new objects.horPit(stage, game);
             vertPit[count] = new objects.vertPit(stage, game);
             horFirePit[count] = new objects.horFirePit(stage, game);
             vertFirePit[count] = new objects.vertFirePit(stage, game);
+        }
+
+        for (var count = 0; count < constants.HAZARDS_NUM; count++) {
+            stones[count] = new objects.Hazards(stage, game);
         }
 
         // Display Scoreboard
