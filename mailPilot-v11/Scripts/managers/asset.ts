@@ -22,14 +22,18 @@ module managers {
     var spriteSheetData = {
         "images": ["assets/images/atlas.png"],
         "frames": [
-            [230, 2, 211, 69],
             [230, 73, 211, 69],
-            [230, 144, 211, 69]
+            [230, 144, 211, 69],
+            [5, 0, 213, 65],
+            [6, 67, 213, 65],
+            [6, 141, 213, 65]
         ],
         "animations": {
-            "instructionsButton": [0],
-            "playButton": [1],
-            "tryAgainButton": [2]
+            "playButton": [0],
+            "tryAgainButton": [1],
+            "easyButton": [2],
+            "mediumButton": [3],
+            "hardButton": [4]
         }
     }
 
