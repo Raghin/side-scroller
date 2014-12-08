@@ -24,7 +24,7 @@ module objects {
             this.images[2] = "vert pit";
             this.images[3] = "hor firepit";
             this.images[4] = "vert firepit";
-            this.image = new createjs.Sprite(managers.Assets.hazards, (this.name = this.images[Math.floor(Math.random() * 4)]));
+            this.image = new createjs.Sprite(managers.Assets.hazards, (this.name = this.images[Math.floor(Math.random() * 5)]));
             this.stage = stage;
             this.game = game;
             //this.image = new createjs.Sprite(managers.Assets.hazards, "stones");
@@ -48,7 +48,7 @@ module objects {
 
         reset() {
             game.removeChild(this.image);
-            this.image = new createjs.Sprite(managers.Assets.hazards, (this.name = this.images[Math.floor(Math.random() * 4)]));
+            this.image = new createjs.Sprite(managers.Assets.hazards, (this.name = this.images[Math.floor(Math.random() * 5)]));
             this.image.y = Math.floor(Math.random() * this.stage.canvas.height);
             this.image.x = this.stage.canvas.width + Math.floor(Math.random() * this.stage.canvas.width);
             game.addChild(this.image);

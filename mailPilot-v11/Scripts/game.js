@@ -1,10 +1,6 @@
 ﻿/// <reference path="constants.ts" />
 /// <reference path="managers/asset.ts" />
 /// <reference path="objects/hazards.ts" />
-/// <reference path="objects/vertPit.ts" />
-/// <reference path="objects/horPit.ts" />
-/// <reference path="objects/vertFirePit.ts" />
-/// <reference path="objects/horFirePit.ts" />
 /// <reference path="objects/crystal.ts" />
 /// <reference path="objects/lifeOrb.ts" />
 /// <reference path="objects/land.ts" />
@@ -31,10 +27,6 @@ var player;
 var crystal;
 var lifeOrb;
 var stones = [];
-var vertPit = [];
-var horPit = [];
-var vertFirePit = [];
-var horFirePit = [];
 var scoreboard;
 
 var collision;

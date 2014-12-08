@@ -1,22 +1,16 @@
 ﻿/// <reference path="../managers/asset.ts" />
 /// <reference path="lifeOrb.ts" />
-
 /**
-    Author: Peter Smith
-    Last Modified by: Peter Smith
-    Last Modified: November 15, 2014
-    Description: A horizontal fire pit
+Author: Peter Smith
+Last Modified by: Peter Smith
+Last Modified: November 15, 2014
+Description: A horizontal fire pit
 **/
-module objects {
+var objects;
+(function (objects) {
     // Cloud class
-    export class horFirePit {
-        image: createjs.Sprite;
-        stage: createjs.Stage;
-        game: createjs.Container;
-        width: number;
-        height: number;
-        dx: number;
-        constructor(stage: createjs.Stage, game: createjs.Container) {
+    var horFirePit = (function () {
+        function horFirePit(stage, game) {
             this.stage = stage;
             this.game = game;
             this.image = new createjs.Sprite(managers.Assets.hazards, "hor firepit");
@@ -30,21 +24,23 @@ module objects {
 
             game.addChild(this.image);
         }
-
-        update() {
+        horFirePit.prototype.update = function () {
             this.image.x -= this.dx;
             if (this.image.x < 0) {
                 this.reset();
             }
-        }
+        };
 
-        reset() {
+        horFirePit.prototype.reset = function () {
             this.image.y = Math.floor(Math.random() * this.stage.canvas.height);
             this.image.x = this.stage.canvas.width + Math.floor(Math.random() * this.stage.canvas.width);
-        }
+        };
 
-        destroy() {
+        horFirePit.prototype.destroy = function () {
             game.removeChild(this.image);
-        }
-    }
-}
+        };
+        return horFirePit;
+    })();
+    objects.horFirePit = horFirePit;
+})(objects || (objects = {}));
+//# sourceMappingURL=horFirePit.js.map
