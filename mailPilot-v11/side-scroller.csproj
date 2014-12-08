@@ -67,6 +67,7 @@
     <Content Include="assets\images\final score logo.png" />
     <Content Include="assets\images\game over logo.png" />
     <Content Include="assets\images\hazards.png" />
+    <Content Include="assets\images\start screen.png" />
     <Content Include="assets\images\title screen logo.png" />
     <Content Include="assets\images\wasteland.png" />
     <Content Include="assets\sounds\crystal grab.wav" />
@@ -122,6 +123,7 @@
     <TypeScriptCompile Include="Scripts\objects\crystal.ts" />
     <TypeScriptCompile Include="Scripts\objects\hazards.ts" />
     <TypeScriptCompile Include="Scripts\objects\label.ts" />
+    <TypeScriptCompile Include="Scripts\objects\background.ts" />
     <TypeScriptCompile Include="Scripts\objects\land.ts" />
     <TypeScriptCompile Include="Scripts\objects\lifeOrb.ts" />
     <TypeScriptCompile Include="Scripts\objects\player.ts" />

@@ -8,7 +8,7 @@ var managers;
 (function (managers) {
     // Image and Sound Manifest;
     var assetManifest = [
-        { id: "loading", src: "assets/images/loading.jpg" },
+        { id: "intro", src: "assets/images/start screen.png" },
         { id: "land", src: "assets/images/plains.png" },
         { id: "title", src: "assets/images/title screen logo.png" },
         { id: "overworld", src: "assets/sounds/overworld.mp3" },

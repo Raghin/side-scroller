@@ -2,6 +2,7 @@
 /// <reference path="../objects/scoreboard.ts" />
 /// <reference path="../objects/player.ts" />
 /// <reference path="../objects/land.ts" />
+/// <reference path="../objects/background.ts" />
 /// <reference path="../objects/crystal.ts" />
 /// <reference path="../objects/button.ts" />
 /// <reference path="../objects/label.ts" />
@@ -14,13 +15,55 @@
 **/
 
 module states {
+    var gameNameLabel: objects.Label;
+    var gameInstructionLabel: objects.Label;
+    var instructions: objects.Label;
+
     export function playButtonClicked(event: MouseEvent) {
+        game.removeAllChildren();
+        game.removeAllEventListeners();
+        land = new objects.Land(stage, game);
+        player = new objects.player(stage, game);
+        // Display Game title
+        game.addChild(gameNameLabel);
+        var easyButton = new objects.Button(stage.canvas.width / 2, 100, "easyButton");
+        game.addChild(easyButton);
+        easyButton.addEventListener("click", function () {
+            stage.removeChild(game);
+            player.destroy();
+            game.removeAllChildren();
+            game.removeAllEventListeners();
+            currentState = constants.PLAY_STATE;
+            changeState(currentState);
+        });
+        var mediumButton = new objects.Button(stage.canvas.width / 2, 200, "mediumButton");
+        game.addChild(mediumButton);
+        mediumButton.addEventListener("click", function () {
+            stage.removeChild(game);
+            player.destroy();
+            game.removeAllChildren();
+            game.removeAllEventListeners();
+            currentState = constants.PLAY_STATE;
+            changeState(currentState);
+        });
+        var hardButton = new objects.Button(stage.canvas.width / 2, 300, "hardButton");
+        game.addChild(hardButton);
+        hardButton.addEventListener("click", function () {
+            stage.removeChild(game);
+            player.destroy();
+            game.removeAllChildren();
+            game.removeAllEventListeners();
+            currentState = constants.PLAY_STATE;
+            changeState(currentState);
+        });
+        /*
         stage.removeChild(game);
         player.destroy();
         game.removeAllChildren();
         game.removeAllEventListeners();
         currentState = constants.PLAY_STATE;
         changeState(currentState);
+        */
     }
 
     export function menuState() {
@@ -29,9 +72,7 @@ module states {
     }
 
     export function menu() {
-        var gameNameLabel: objects.Label;
-        var gameInstructionLabel: objects.Label;
-        var instructions: objects.Label;
+        
 
         // Declare new Game Container
         game = new createjs.Container();
