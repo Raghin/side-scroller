@@ -29,6 +29,16 @@ var states;
     }
     states.tryAgainClicked = tryAgainClicked;
 
+    // Restart Game when Try Again Button is clicked
+    function mainMenuClicked(event) {
+        stage.removeChild(game);
+        game.removeAllChildren();
+        game.removeAllEventListeners();
+        currentState = constants.MENU_STATE;
+        changeState(currentState);
+    }
+    states.mainMenuClicked = mainMenuClicked;
+
     // Game Over Scene
     function gameOver() {
         var gameOverLabel;
@@ -64,6 +74,11 @@ var states;
         tryAgain = new objects.Button(stage.canvas.width / 2, 300, "tryAgainButton");
         game.addChild(tryAgain);
         tryAgain.addEventListener("click", tryAgainClicked);
+
+        // Display Try Again Button
+        var mainMenu = new objects.Button(stage.canvas.width / 2, 200, "mainMenuButton");
+        game.addChild(mainMenu);
+        mainMenu.addEventListener("click", mainMenuClicked);
 
         stage.addChild(game);
         this.dead = createjs.Sound.play('dead', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);

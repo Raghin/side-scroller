@@ -24,16 +24,18 @@ module managers {
         "frames": [
             [230, 73, 211, 69],
             [230, 144, 211, 69],
-            [5, 0, 213, 65],
-            [6, 67, 213, 65],
-            [6, 141, 213, 65]
+            [6, 0, 211, 69],
+            [6, 67, 211, 69],
+            [6, 141, 211, 69],
+            [230, 0, 211, 69]
         ],
         "animations": {
             "playButton": [0],
             "tryAgainButton": [1],
             "easyButton": [2],
             "mediumButton": [3],
-            "hardButton": [4]
+            "hardButton": [4],
+            "mainMenuButton": [5]
         }
     }
 

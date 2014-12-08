@@ -29,6 +29,7 @@ module states {
         var easyButton = new objects.Button(stage.canvas.width / 2, 100, "easyButton");
         game.addChild(easyButton);
         easyButton.addEventListener("click", function () {
+            constants.HAZARDS_NUM = 4;
             stage.removeChild(game);
             player.destroy();
             game.removeAllChildren();
@@ -39,6 +40,7 @@ module states {
         var mediumButton = new objects.Button(stage.canvas.width / 2, 200, "mediumButton");
         game.addChild(mediumButton);
         mediumButton.addEventListener("click", function () {
+            constants.HAZARDS_NUM = 6;
             stage.removeChild(game);
             player.destroy();
             game.removeAllChildren();
@@ -49,6 +51,7 @@ module states {
         var hardButton = new objects.Button(stage.canvas.width / 2, 300, "hardButton");
         game.addChild(hardButton);
         hardButton.addEventListener("click", function () {
+            constants.HAZARDS_NUM = 8;
             stage.removeChild(game);
             player.destroy();
             game.removeAllChildren();
@@ -56,14 +59,6 @@ module states {
             currentState = constants.PLAY_STATE;
             changeState(currentState);
         });
-        /*
-        stage.removeChild(game);
-        player.destroy();
-        game.removeAllChildren();
-        game.removeAllEventListeners();
-        currentState = constants.PLAY_STATE;
-        changeState(currentState);
-        */
     }
 
     export function menuState() {
@@ -71,8 +66,11 @@ module states {
         player.update();
     }
 
+    var run: number = 0;
     export function menu() {
-        
+        if (run == 1)
+            this.dead.stop();
+        run = 1;
 
         // Declare new Game Container
         game = new createjs.Container();
