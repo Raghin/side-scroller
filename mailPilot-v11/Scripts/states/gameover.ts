@@ -66,12 +66,12 @@ module states {
         game.addChild(finalScore);
 
         // Display Try Again Button
-        tryAgain = new objects.Button(stage.canvas.width / 2, 300, "tryAgainButton");
+        tryAgain = new objects.Button(stage.canvas.width / 2, 400, "tryAgainButton");
         game.addChild(tryAgain);
         tryAgain.addEventListener("click", tryAgainClicked);
 
         // Display Try Again Button
-        var mainMenu = new objects.Button(stage.canvas.width / 2, 200, "mainMenuButton");
+        var mainMenu = new objects.Button(stage.canvas.width / 2, 300, "mainMenuButton");
         game.addChild(mainMenu);
         mainMenu.addEventListener("click", mainMenuClicked);
 

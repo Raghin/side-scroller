@@ -46,23 +46,43 @@ module managers {
         }
 
         //check for overlap between items
-        private overlap(hazards: objects.Hazards) {
+        private overlap() {
             var p1: createjs.Point = new createjs.Point();
             var p2: createjs.Point = new createjs.Point();
             var p3: createjs.Point = new createjs.Point();
             p1.x = this.crystal.image.x;
             p1.y = this.crystal.image.y;
-            p2.x = hazards.image.x;
-            p2.y = hazards.image.y;
             p3.x = this.lifeOrb.image.x;
             p3.y = this.lifeOrb.image.y;
-            if (this.distance(p1, p2) < ((this.crystal.width / 2) + (hazards.width / 2)) || this.distance(p1, p2) < ((this.crystal.height / 2) + (hazards.height / 2))) {
-                crystal.reset();
-                hazards.reset();
+            for (var i = 0; i < this.hazards.length; i++) {
+                p2.x = this.hazards[i].image.x;
+                p2.y = this.hazards[i].image.y;
+                if (this.distance(p1, p2) < ((this.crystal.width / 2) + (this.hazards[i].width / 2)) || this.distance(p1, p2) < ((this.crystal.height / 2) + (this.hazards[i].height / 2))) {
+                    this.crystal.reset();
+                }
+                else if (this.distance(p2, p3) < ((this.lifeOrb.width / 2) + (this.hazards[i].width / 2)) || this.distance(p2, p3) < ((this.lifeOrb.height / 2) + (this.hazards[i].height / 2))) {
+                    this.lifeOrb.reset();
+                }
             }
-            else if (this.distance(p2, p3) < ((this.lifeOrb.width / 2) + (hazards.width / 2)) || this.distance(p2, p3) < ((this.lifeOrb.height / 2) + (hazards.height / 2))) {
-                lifeOrb.reset();
-                hazards.reset();
+        }
+
+        // checks if 1 hazards are overlapping
+        private hazardCheck(hazards: objects.Hazards) {
+            var p1: createjs.Point = new createjs.Point();
+            var p2: createjs.Point = new createjs.Point();
+            p1.x = hazards.image.x;
+            p1.y = hazards.image.y;
+            for(var i = 0; i < this.hazards.length; i++)
+            {
+                p2.x = this.hazards[i].image.x;
+                p2.y = this.hazards[i].image.y;
+                if (this.hazards[i] != hazards)
+                {
+                    if (this.distance(p1, p2) < ((this.hazards[i].width / 2) + (hazards.width / 2)) || this.distance(p1, p2) < ((this.hazards[i].height / 2) + (hazards.height / 2))) {
+                        this.hazards[i].reset();
+                        hazards.reset();
+                    }
+                }
             }
         }
 
@@ -124,6 +144,8 @@ module managers {
         update() {
             for (var count = 0; count < constants.HAZARDS_NUM; count++) {
                 this.playerAndHazard(this.hazards[count]);
+                this.overlap();
+                this.hazardCheck(this.hazards[count]);
             }
             this.playerAndCrystal();
             this.playerAndLifeorb();

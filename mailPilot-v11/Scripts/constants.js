@@ -18,5 +18,12 @@ var constants;
     constants.LABEL_FONT = "30px Consolas";
     constants.LABEL_COLOUR = "#FFFF00";
     constants.PLAYER_LIVES = 3;
+    constants.COORDINATES = [];
+    constants.COORDINATES[0] = 0;
+    constants.COORDINATES[1] = 74;
+    constants.COORDINATES[2] = 148;
+    constants.COORDINATES[3] = 222;
+    constants.COORDINATES[4] = 296;
+    constants.COORDINATES[5] = 370;
 })(constants || (constants = {}));
 //# sourceMappingURL=constants.js.map

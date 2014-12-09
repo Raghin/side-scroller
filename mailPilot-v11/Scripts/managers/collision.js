@@ -39,22 +39,40 @@ var managers;
         };
 
         //check for overlap between items
-        Collision.prototype.overlap = function (hazards) {
+        Collision.prototype.overlap = function () {
             var p1 = new createjs.Point();
             var p2 = new createjs.Point();
             var p3 = new createjs.Point();
             p1.x = this.crystal.image.x;
             p1.y = this.crystal.image.y;
-            p2.x = hazards.image.x;
-            p2.y = hazards.image.y;
             p3.x = this.lifeOrb.image.x;
             p3.y = this.lifeOrb.image.y;
-            if (this.distance(p1, p2) < ((this.crystal.width / 2) + (hazards.width / 2)) || this.distance(p1, p2) < ((this.crystal.height / 2) + (hazards.height / 2))) {
-                crystal.reset();
-                hazards.reset();
-            } else if (this.distance(p2, p3) < ((this.lifeOrb.width / 2) + (hazards.width / 2)) || this.distance(p2, p3) < ((this.lifeOrb.height / 2) + (hazards.height / 2))) {
-                lifeOrb.reset();
-                hazards.reset();
+            for (var i = 0; i < this.hazards.length; i++) {
+                p2.x = this.hazards[i].image.x;
+                p2.y = this.hazards[i].image.y;
+                if (this.distance(p1, p2) < ((this.crystal.width / 2) + (this.hazards[i].width / 2)) || this.distance(p1, p2) < ((this.crystal.height / 2) + (this.hazards[i].height / 2))) {
+                    this.crystal.reset();
+                } else if (this.distance(p2, p3) < ((this.lifeOrb.width / 2) + (this.hazards[i].width / 2)) || this.distance(p2, p3) < ((this.lifeOrb.height / 2) + (this.hazards[i].height / 2))) {
+                    this.lifeOrb.reset();
+                }
+            }
+        };
+
+        // checks if 1 hazards are overlapping
+        Collision.prototype.hazardCheck = function (hazards) {
+            var p1 = new createjs.Point();
+            var p2 = new createjs.Point();
+            p1.x = hazards.image.x;
+            p1.y = hazards.image.y;
+            for (var i = 0; i < this.hazards.length; i++) {
+                p2.x = this.hazards[i].image.x;
+                p2.y = this.hazards[i].image.y;
+                if (this.hazards[i] != hazards) {
+                    if (this.distance(p1, p2) < ((this.hazards[i].width / 2) + (hazards.width / 2)) || this.distance(p1, p2) < ((this.hazards[i].height / 2) + (hazards.height / 2))) {
+                        this.hazards[i].reset();
+                        hazards.reset();
+                    }
+                }
             }
         };
 
@@ -116,6 +134,8 @@ var managers;
         Collision.prototype.update = function () {
             for (var count = 0; count < constants.HAZARDS_NUM; count++) {
                 this.playerAndHazard(this.hazards[count]);
+                this.overlap();
+                this.hazardCheck(this.hazards[count]);
             }
             this.playerAndCrystal();
             this.playerAndLifeorb();
