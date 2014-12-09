@@ -15,7 +15,7 @@
 **/
 
 module states {
-    var gameNameLabel: objects.Label;
+    var gameNameLabel: createjs.Bitmap;
     var gameInstructionLabel: objects.Label;
     var instructions: objects.Label;
 
@@ -26,10 +26,11 @@ module states {
         player = new objects.player(stage, game);
         // Display Game title
         game.addChild(gameNameLabel);
-        var easyButton = new objects.Button(stage.canvas.width / 2, 100, "easyButton");
+        var easyButton = new objects.Button(stage.canvas.width / 2, 150, "easyButton");
         game.addChild(easyButton);
         easyButton.addEventListener("click", function () {
             constants.HAZARDS_NUM = 4;
+            constants.DIFFICULTY = "easy";
             stage.removeChild(game);
             player.destroy();
             game.removeAllChildren();
@@ -37,10 +38,11 @@ module states {
             currentState = constants.PLAY_STATE;
             changeState(currentState);
         });
-        var mediumButton = new objects.Button(stage.canvas.width / 2, 200, "mediumButton");
+        var mediumButton = new objects.Button(stage.canvas.width / 2, 250, "mediumButton");
         game.addChild(mediumButton);
         mediumButton.addEventListener("click", function () {
             constants.HAZARDS_NUM = 6;
+            constants.DIFFICULTY = "medium";
             stage.removeChild(game);
             player.destroy();
             game.removeAllChildren();
@@ -48,10 +50,11 @@ module states {
             currentState = constants.PLAY_STATE;
             changeState(currentState);
         });
-        var hardButton = new objects.Button(stage.canvas.width / 2, 300, "hardButton");
+        var hardButton = new objects.Button(stage.canvas.width / 2, 350, "hardButton");
         game.addChild(hardButton);
         hardButton.addEventListener("click", function () {
             constants.HAZARDS_NUM = 8;
+            constants.DIFFICULTY = "hard";
             stage.removeChild(game);
             player.destroy();
             game.removeAllChildren();
@@ -83,7 +86,7 @@ module states {
         stage.cursor = "default";
 
         // Display Game title
-        gameNameLabel = new objects.Label(stage.canvas.width / 2, 20, "Crystal Plains");
+        gameNameLabel = new createjs.Bitmap(managers.Assets.loader.getResult("title"));
         game.addChild(gameNameLabel);
 
         // display instructions label

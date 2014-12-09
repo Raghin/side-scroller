@@ -9,8 +9,10 @@ module managers {
     // Image and Sound Manifest;
     var assetManifest = [
         { id: "intro", src: "assets/images/start screen.png" },
+        { id: "title", src: "assets/images/title logo.png" },
+        { id: "end", src: "assets/images/ending logo.png" },
+        { id: "points", src: "assets/images/score.png" },
         { id: "land", src: "assets/images/plains.png" },
-        { id: "title", src: "assets/images/title screen logo.png" },
         { id: "overworld", src: "assets/sounds/overworld.mp3" },
         { id: "dead", src: "assets/sounds/Game Over.mp3" },
         { id: "hurt", src: "assets/sounds/hurt.wav" },
@@ -51,6 +53,21 @@ module managers {
             "frame 1": [0],
             "frame 2": [1],
             "frame 3": [2]
+        }
+    }
+
+    //character sprite sheet data object
+    var thiefSheetData = {
+        "images": ["assets/images/thief atlas.png"],
+        "frames": [
+            [4, 33, 24, 31],
+            [36, 31, 26, 32],
+            [68, 33, 26, 31]
+        ],
+        "animations": {
+            "thief 1": [0],
+            "thief 2": [1],
+            "thief 3": [2]
         }
     }
 
@@ -97,6 +114,7 @@ module managers {
         public static character: createjs.SpriteSheet;
         public static collectables: createjs.SpriteSheet;
         public static hazards: createjs.SpriteSheet;
+        public static thief: createjs.SpriteSheet;
 
         public static init() {
             createjs.Sound.initializeDefaultPlugins();
@@ -107,6 +125,7 @@ module managers {
             this.character = new createjs.SpriteSheet(characterSheetData);
             this.collectables = new createjs.SpriteSheet(collectablesSheetData);
             this.hazards = new createjs.SpriteSheet(hazardsSheetData);
+            this.thief = new createjs.SpriteSheet(thiefSheetData);
         }
 
     }

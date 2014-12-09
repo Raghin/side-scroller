@@ -12,6 +12,7 @@
 /// <reference path="states/play.ts" />
 /// <reference path="states/menu.ts" />
 /// <reference path="states/gameover.ts" />
+/// <reference path="objects/enemy.ts" />
 /**
 Author: Peter Smith
 Last Modified by: Peter Smith
@@ -23,10 +24,11 @@ var game;
 
 var land;
 var player;
+var enemy;
 
 var crystal;
 var lifeOrb;
-var stones = [];
+var hazard = [];
 var scoreboard;
 
 var collision;

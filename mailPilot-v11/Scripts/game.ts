@@ -12,6 +12,7 @@
 /// <reference path="states/play.ts" />
 /// <reference path="states/menu.ts" />
 /// <reference path="states/gameover.ts" />
+/// <reference path="objects/enemy.ts" />
 
 /**
     Author: Peter Smith
@@ -25,10 +26,11 @@ var game: createjs.Container;
 
 var land: objects.Land;
 var player: objects.player;
+var enemy: objects.enemy;
 
 var crystal: objects.Crystal;
 var lifeOrb: objects.lifeOrb;
-var stones = []; // stones array;
+var hazard = []; // stones array;
 var scoreboard: objects.Scoreboard;
 
 var collision: managers.Collision;

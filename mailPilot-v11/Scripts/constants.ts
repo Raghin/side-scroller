@@ -17,6 +17,7 @@ module constants {
     export var LABEL_FONT = "30px Consolas";
     export var LABEL_COLOUR = "#FFFF00";
     export var PLAYER_LIVES = 3;
+    export var DIFFICULTY = "";
     export var COORDINATES = [];
     COORDINATES[0] = 0;
     COORDINATES[1] = 74;

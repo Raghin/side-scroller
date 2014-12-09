@@ -18,6 +18,7 @@ var constants;
     constants.LABEL_FONT = "30px Consolas";
     constants.LABEL_COLOUR = "#FFFF00";
     constants.PLAYER_LIVES = 3;
+    constants.DIFFICULTY = "";
     constants.COORDINATES = [];
     constants.COORDINATES[0] = 0;
     constants.COORDINATES[1] = 74;

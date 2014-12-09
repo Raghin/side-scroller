@@ -59,11 +59,14 @@ var states;
         stage.cursor = "default";
 
         // Display Game Over
-        gameOverLabel = new objects.Label(stage.canvas.width / 2, 40, "GAME OVER");
+        gameOverLabel = new createjs.Bitmap(managers.Assets.loader.getResult("end"));
+        gameOverLabel.x = 60;
         game.addChild(gameOverLabel);
 
         // Display Final Score Label
-        finalScoreLabel = new objects.Label(stage.canvas.width / 2, 120, "FINAL SCORE");
+        finalScoreLabel = new createjs.Bitmap(managers.Assets.loader.getResult("points"));
+        finalScoreLabel.x = 60;
+        finalScoreLabel.y = 80;
         game.addChild(finalScoreLabel);
 
         // Display Final Score

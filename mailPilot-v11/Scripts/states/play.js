@@ -23,7 +23,7 @@ var states;
         player.update();
 
         for (var count = 0; count < constants.HAZARDS_NUM; count++) {
-            stones[count].update();
+            hazard[count].update();
         }
 
         collision.update();
@@ -62,14 +62,14 @@ var states;
         stage.cursor = "none";
 
         for (var count = 0; count < constants.HAZARDS_NUM; count++) {
-            stones[count] = new objects.Hazards(stage, game);
+            hazard[count] = new objects.Hazards(stage, game);
         }
 
         // Display Scoreboard
         scoreboard = new objects.Scoreboard(stage, game);
 
         // Instantiate Collision Manager
-        collision = new managers.Collision(player, crystal, lifeOrb, stones, scoreboard);
+        collision = new managers.Collision(player, crystal, lifeOrb, hazard, scoreboard);
 
         stage.addChild(game);
         this.overworld = createjs.Sound.play('overworld', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
