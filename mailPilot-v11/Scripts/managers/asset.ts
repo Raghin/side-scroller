@@ -96,8 +96,8 @@ module managers {
     var collectablesSheetData = {
         "images": ["assets/images/collectables.png"],
         "frames": [
-            [94, 63, 27, 30],
-            [24, 29, 36, 32]
+            [97, 63, 27, 22],
+            [26, 29, 33, 30]
         ],
         "animations": {
             "life orb": [0],

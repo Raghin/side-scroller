@@ -1,5 +1,4 @@
 ﻿/// <reference path="../managers/asset.ts" />
-/// <reference path="lifeOrb.ts" />
 
 /**
     Author: Peter Smith
