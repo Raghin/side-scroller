@@ -10,6 +10,8 @@ var objects;
     var Scoreboard = (function () {
         function Scoreboard(stage, game) {
             this.labelText = "";
+            this.scoreValueLabelString = "";
+            this.livesValueLabelString = "";
             this.stage = stage;
             this.game = game;
             this.lives = constants.PLAYER_LIVES;
@@ -19,11 +21,19 @@ var objects;
             this.width = this.label.getBounds().width;
             this.height = this.label.getBounds().height;
 
-            game.addChild(this.label);
+            this.update();
+
+            this.showScoreBoard();
         }
         Scoreboard.prototype.update = function () {
-            this.labelText = "Lives: " + this.lives.toString() + " Score: " + this.score.toString();
+            this.livesValueLabelString = this.lives.toString();
+            this.scoreValueLabelString = this.score.toString();
+            this.labelText = "Lives: " + this.livesValueLabelString + " Score: " + this.scoreValueLabelString;
             this.label.text = this.labelText;
+        };
+
+        Scoreboard.prototype.showScoreBoard = function () {
+            game.addChild(this.label);
         };
 
         Scoreboard.prototype.destroy = function () {

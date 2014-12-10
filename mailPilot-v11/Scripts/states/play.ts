@@ -38,17 +38,31 @@ module states {
             currentState = constants.GAME_OVER_STATE;
             changeState(currentState);
         }
+
+        if (scoreboard.score >= 100) {
+            stage.removeChild(game);
+            player.destroy();
+            game.removeAllChildren();
+            game.removeAllEventListeners();
+            currentState = constants.LEVEL_2;
+            changeState(currentState);
+        }
     }
-    var run: number = 0;
     // play state Function
     export function play(): void {
+        if (constants.DIFFICULTY == "easy")
+            constants.HAZARDS_NUM = 3;
+        else if (constants.DIFFICULTY == "medium")
+            constants.HAZARDS_NUM = 4;
+        else if (constants.DIFFICULTY == "hard")
+            constants.HAZARDS_NUM = 5;
+
         // Declare new Game Container
         game = new createjs.Container();
-        if(run == 1)
+        if(constants.PREVIOUS_STATE == constants.GAME_OVER_STATE)
             this.dead.stop();
         // create the background music
         overworld: createjs.SoundInstance;
-        run = 1;
         // Instantiate Game Objects
         land = new objects.Land(stage, game);
         crystal = new objects.Crystal(stage, game);

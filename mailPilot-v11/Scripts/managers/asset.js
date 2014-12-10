@@ -13,6 +13,8 @@ var managers;
         { id: "end", src: "assets/images/ending logo.png" },
         { id: "points", src: "assets/images/score.png" },
         { id: "land", src: "assets/images/plains.png" },
+        { id: "desert", src: "assets/images/desert.png" },
+        { id: "wasteland", src: "assets/images/wasteland.png" },
         { id: "overworld", src: "assets/sounds/overworld.mp3" },
         { id: "dead", src: "assets/sounds/Game Over.mp3" },
         { id: "hurt", src: "assets/sounds/hurt.wav" },

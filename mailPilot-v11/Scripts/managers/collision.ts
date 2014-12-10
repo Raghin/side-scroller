@@ -144,7 +144,7 @@ module managers {
         update() {
             for (var count = 0; count < constants.HAZARDS_NUM; count++) {
                 this.playerAndHazard(this.hazards[count]);
-                this.overlap();
+                //this.overlap();
                 this.hazardCheck(this.hazards[count]);
             }
             this.playerAndCrystal();

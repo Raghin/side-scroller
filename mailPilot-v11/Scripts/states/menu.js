@@ -21,15 +21,19 @@ var states;
     function playButtonClicked(event) {
         game.removeAllChildren();
         game.removeAllEventListeners();
-        land = new objects.Land(stage, game);
-        player = new objects.player(stage, game);
 
         // Display Game title
+        var background = new createjs.Bitmap(managers.Assets.loader.getResult("intro"));
+        game.addChild(background);
         game.addChild(gameNameLabel);
+        constants.PREVIOUS_STATE = constants.MENU_STATE;
         var easyButton = new objects.Button(stage.canvas.width / 2, 150, "easyButton");
         game.addChild(easyButton);
         easyButton.addEventListener("click", function () {
-            constants.HAZARDS_NUM = 4;
+            game.removeAllChildren();
+            game.removeAllEventListeners();
+            land = new objects.Land(stage, game);
+            player = new objects.player(stage, game);
             constants.DIFFICULTY = "easy";
             stage.removeChild(game);
             player.destroy();
@@ -41,7 +45,10 @@ var states;
         var mediumButton = new objects.Button(stage.canvas.width / 2, 250, "mediumButton");
         game.addChild(mediumButton);
         mediumButton.addEventListener("click", function () {
-            constants.HAZARDS_NUM = 6;
+            game.removeAllChildren();
+            game.removeAllEventListeners();
+            land = new objects.Land(stage, game);
+            player = new objects.player(stage, game);
             constants.DIFFICULTY = "medium";
             stage.removeChild(game);
             player.destroy();
@@ -53,7 +60,10 @@ var states;
         var hardButton = new objects.Button(stage.canvas.width / 2, 350, "hardButton");
         game.addChild(hardButton);
         hardButton.addEventListener("click", function () {
-            constants.HAZARDS_NUM = 8;
+            game.removeAllChildren();
+            game.removeAllEventListeners();
+            land = new objects.Land(stage, game);
+            player = new objects.player(stage, game);
             constants.DIFFICULTY = "hard";
             stage.removeChild(game);
             player.destroy();
@@ -66,23 +76,23 @@ var states;
     states.playButtonClicked = playButtonClicked;
 
     function menuState() {
-        land.update();
-        player.update();
+        //land.update();
+        //player.update();
     }
     states.menuState = menuState;
 
-    var run = 0;
     function menu() {
-        if (run == 1)
+        if (constants.PREVIOUS_STATE == constants.GAME_OVER_STATE)
             this.dead.stop();
-        run = 1;
 
         // Declare new Game Container
         game = new createjs.Container();
 
         // Instantiate Game Objects
-        land = new objects.Land(stage, game);
-        player = new objects.player(stage, game);
+        //land = new objects.Land(stage, game);
+        //player = new objects.player(stage, game);
+        var background = new createjs.Bitmap(managers.Assets.loader.getResult("intro"));
+        game.addChild(background);
 
         // Show Cursor
         stage.cursor = "default";

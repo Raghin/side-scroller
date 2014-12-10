@@ -15,5 +15,13 @@ module objects {
             this.x = x;
             this.y = y;
         }
+
+        // Utility Method to change the default font size
+        fontSize(size: number) {
+            var scale: number = size / this.getBounds().height;
+
+            this.scaleX = scale;
+            this.scaleY = scale;
+        }
     }
 } 

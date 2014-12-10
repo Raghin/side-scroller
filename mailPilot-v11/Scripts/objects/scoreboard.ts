@@ -16,6 +16,8 @@ module objects {
         labelText: string = "";
         width: number;
         height: number;
+        scoreValueLabelString: string = "";
+        livesValueLabelString: string = "";
         constructor(stage: createjs.Stage, game: createjs.Container) {
             this.stage = stage;
             this.game = game;
@@ -26,12 +28,20 @@ module objects {
             this.width = this.label.getBounds().width;
             this.height = this.label.getBounds().height;
 
-            game.addChild(this.label);
+            this.update();
+
+            this.showScoreBoard();
         }
 
         update() {
-            this.labelText = "Lives: " + this.lives.toString() + " Score: " + this.score.toString();
+            this.livesValueLabelString = this.lives.toString();
+            this.scoreValueLabelString = this.score.toString();
+            this.labelText = "Lives: " + this.livesValueLabelString + " Score: " + this.scoreValueLabelString;
             this.label.text = this.labelText;
+        }
+
+        showScoreBoard() {
+            game.addChild(this.label);
         }
 
         destroy() {

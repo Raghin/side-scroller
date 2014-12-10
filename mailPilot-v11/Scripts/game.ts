@@ -32,6 +32,7 @@ var crystal: objects.Crystal;
 var lifeOrb: objects.lifeOrb;
 var hazard = []; // stones array;
 var scoreboard: objects.Scoreboard;
+var levelLabel: objects.LevelLabel;
 
 var collision: managers.Collision;
 
@@ -85,6 +86,18 @@ function changeState(state: number): void {
             // instantiate play screen
             currentStateFunction = states.playState;
             states.play();
+            break;
+
+        case constants.LEVEL_2:
+            // instantiate play screen
+            currentStateFunction = states.level2State;
+            states.level2();
+            break;
+
+        case constants.LEVEL_3:
+            // instantiate play screen
+            currentStateFunction = states.level3State;
+            states.level3();
             break;
 
         case constants.GAME_OVER_STATE:

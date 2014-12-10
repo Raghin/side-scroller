@@ -27,12 +27,31 @@ module objects {
 
             game.addChild(this.image);
         }
-
+        
         update() {
             this.image.x -= this.dy;
             if (this.image.x <= -900) {
                 this.reset();
             }
+            
+        }
+
+        setDesert() {
+            this.destroy();
+            this.image = new createjs.Bitmap(managers.Assets.loader.getResult("desert"));
+            this.width = this.image.getBounds().width;
+            this.height = this.image.getBounds().height;
+            this.reset();
+            game.addChild(this.image);
+        }
+
+        setWasteland() {
+            this.destroy();
+            this.image = new createjs.Bitmap(managers.Assets.loader.getResult("wasteland"));
+            this.width = this.image.getBounds().width;
+            this.height = this.image.getBounds().height;
+            this.reset();
+            game.addChild(this.image);
         }
 
         reset() {

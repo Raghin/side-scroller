@@ -22,6 +22,13 @@ var objects;
             this.x = x;
             this.y = y;
         }
+        // Utility Method to change the default font size
+        Label.prototype.fontSize = function (size) {
+            var scale = size / this.getBounds().height;
+
+            this.scaleX = scale;
+            this.scaleY = scale;
+        };
         return Label;
     })(createjs.Text);
     objects.Label = Label;

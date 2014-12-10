@@ -15,7 +15,7 @@
 **/
 module states {
     export function gameOverState() {
-        land.update();
+        //land.update();
     }
 
     // Restart Game when Try Again Button is clicked
@@ -38,6 +38,9 @@ module states {
 
     // Game Over Scene
     export function gameOver() {
+        game.removeAllChildren();
+        game.removeAllEventListeners();
+        var background = new createjs.Bitmap(managers.Assets.loader.getResult("intro"));
         var gameOverLabel: createjs.Bitmap;
         var finalScoreLabel: createjs.Bitmap;
         var finalScore: objects.Label;
@@ -48,8 +51,8 @@ module states {
         game = new createjs.Container();
 
         // Instantiate Game Objects
-        land = new objects.Land(stage, game);
-
+        //land = new objects.Land(stage, game);
+        game.addChild(background);
         // Show Cursor
         stage.cursor = "default";
 
@@ -80,5 +83,6 @@ module states {
 
         stage.addChild(game);
         this.dead = createjs.Sound.play('dead', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
+        constants.PREVIOUS_STATE = constants.GAME_OVER_STATE;
     }
 }

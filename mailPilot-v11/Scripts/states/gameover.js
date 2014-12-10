@@ -15,7 +15,7 @@ Description: The gameover state
 var states;
 (function (states) {
     function gameOverState() {
-        land.update();
+        //land.update();
     }
     states.gameOverState = gameOverState;
 
@@ -41,6 +41,9 @@ var states;
 
     // Game Over Scene
     function gameOver() {
+        game.removeAllChildren();
+        game.removeAllEventListeners();
+        var background = new createjs.Bitmap(managers.Assets.loader.getResult("intro"));
         var gameOverLabel;
         var finalScoreLabel;
         var finalScore;
@@ -53,7 +56,8 @@ var states;
         game = new createjs.Container();
 
         // Instantiate Game Objects
-        land = new objects.Land(stage, game);
+        //land = new objects.Land(stage, game);
+        game.addChild(background);
 
         // Show Cursor
         stage.cursor = "default";
@@ -85,6 +89,7 @@ var states;
 
         stage.addChild(game);
         this.dead = createjs.Sound.play('dead', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
+        constants.PREVIOUS_STATE = constants.GAME_OVER_STATE;
     }
     states.gameOver = gameOver;
 })(states || (states = {}));

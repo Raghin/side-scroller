@@ -10,6 +10,9 @@ var constants;
     constants.MENU_STATE = 0;
     constants.PLAY_STATE = 1;
     constants.GAME_OVER_STATE = 2;
+    constants.LEVEL_2 = 3;
+    constants.LEVEL_3 = 4;
+    constants.PREVIOUS_STATE;
 
     // Game Constants
     constants.HAZARDS_NUM = 10;
