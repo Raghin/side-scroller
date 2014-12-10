@@ -1,4 +1,5 @@
 ﻿/// <reference path="../objects/hazards.ts" />
+/// <reference path="../objects/enemies.ts" />
 /// <reference path="../objects/crystal.ts" />
 /// <reference path="../objects/lifeOrb.ts" />
 /// <reference path="../objects/player.ts" />
@@ -13,12 +14,14 @@ var managers;
 (function (managers) {
     // Collision Manager Class
     var Collision = (function () {
-        function Collision(player, crystal, lifeOrb, hazards, scoreboard) {
+        function Collision(player, crystal, lifeOrb, hazards, enemies, scoreboard) {
             this.hazards = [];
+            this.enemies = [];
             this.player = player;
             this.crystal = crystal;
             this.lifeOrb = lifeOrb;
             this.hazards = hazards;
+            this.enemies = enemies;
             this.scoreboard = scoreboard;
         }
         // Utility method - Distance calculation between two points
@@ -133,8 +136,9 @@ var managers;
         // Utility Function to Check Collisions
         Collision.prototype.update = function () {
             for (var count = 0; count < constants.HAZARDS_NUM; count++) {
-                this.playerAndHazard(this.hazards[count]);
-                this.overlap();
+                this.playerAndHazard(this.hazards[count], this.enemies[count]);
+
+                //this.overlap();
                 this.hazardCheck(this.hazards[count]);
             }
             this.playerAndCrystal();

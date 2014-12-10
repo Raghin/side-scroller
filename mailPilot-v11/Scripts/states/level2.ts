@@ -3,6 +3,7 @@
 /// <reference path="../objects/crystal.ts" />
 /// <reference path="../objects/lifeOrb.ts" />
 /// <reference path="../objects/label.ts" />
+/// <reference path="../objects/enemies.ts" />
 /// <reference path="../objects/land.ts" />
 /// <reference path="../objects/player.ts" />
 /// <reference path="../objects/scoreboard.ts" />
@@ -76,7 +77,7 @@ module states {
         scoreboard.showScoreBoard();
 
         // Instantiate Collision Manager
-        collision = new managers.Collision(player, crystal, lifeOrb, hazard, scoreboard);
+        collision = new managers.Collision(player, crystal, lifeOrb, hazard, enemy, scoreboard);
 
         stage.addChild(game);
     }

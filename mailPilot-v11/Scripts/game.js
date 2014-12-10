@@ -1,6 +1,7 @@
 ﻿/// <reference path="constants.ts" />
 /// <reference path="managers/asset.ts" />
 /// <reference path="objects/hazards.ts" />
+/// <reference path="objects/enemies.ts" />
 /// <reference path="objects/crystal.ts" />
 /// <reference path="objects/lifeOrb.ts" />
 /// <reference path="objects/land.ts" />
@@ -12,7 +13,6 @@
 /// <reference path="states/play.ts" />
 /// <reference path="states/menu.ts" />
 /// <reference path="states/gameover.ts" />
-/// <reference path="objects/enemy.ts" />
 /**
 Author: Peter Smith
 Last Modified by: Peter Smith
@@ -24,11 +24,11 @@ var game;
 
 var land;
 var player;
-var enemy;
 
 var crystal;
 var lifeOrb;
 var hazard = [];
+var enemy = [];
 var scoreboard;
 var levelLabel;
 

@@ -1,4 +1,5 @@
 ﻿/// <reference path="../objects/hazards.ts" />
+/// <reference path="../objects/enemies.ts" />
 /// <reference path="../objects/crystal.ts" />
 /// <reference path="../objects/lifeOrb.ts" />
 /// <reference path="../objects/player.ts" />
@@ -18,13 +19,15 @@ module managers {
         private crystal: objects.Crystal;
         private lifeOrb: objects.lifeOrb;
         private hazards = [];
+        private enemies = [];
         private scoreboard: objects.Scoreboard;
 
-        constructor(player: objects.player, crystal: objects.Crystal, lifeOrb: objects.lifeOrb, hazards, scoreboard: objects.Scoreboard) {
+        constructor(player: objects.player, crystal: objects.Crystal, lifeOrb: objects.lifeOrb, hazards, enemies, scoreboard: objects.Scoreboard) {
             this.player = player;
             this.crystal = crystal;
             this.lifeOrb = lifeOrb;
             this.hazards = hazards;
+            this.enemies = enemies;
             this.scoreboard = scoreboard;
         }
 
@@ -96,7 +99,7 @@ module managers {
             p2.y = hazards.image.y;
             if (this.distance(p1, p2) < ((this.player.width / 2) + (hazards.width / 2))) {
                 createjs.Sound.play("hurt");
-                if(hazards.name == "stones")
+                if (hazards.name == "stones")
                     this.scoreboard.lives -= 1;
                 else if (hazards.name == "vert pit")
                     this.scoreboard.lives -= 2;
@@ -143,7 +146,7 @@ module managers {
         // Utility Function to Check Collisions
         update() {
             for (var count = 0; count < constants.HAZARDS_NUM; count++) {
-                this.playerAndHazard(this.hazards[count]);
+                this.playerAndHazard(this.hazards[count], this.enemies[count]);
                 //this.overlap();
                 this.hazardCheck(this.hazards[count]);
             }

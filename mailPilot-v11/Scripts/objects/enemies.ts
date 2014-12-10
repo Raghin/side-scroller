@@ -9,7 +9,7 @@
 **/
 module objects {
     // Cloud class
-    export class enemy {
+    export class enemies {
         image: createjs.Sprite;
         name;
         stage: createjs.Stage;
@@ -17,6 +17,7 @@ module objects {
         width: number;
         height: number;
         dx: number;
+        dy: number;
         constructor(stage: createjs.Stage, game: createjs.Container) {
             this.stage = stage;
             this.game = game;
@@ -27,14 +28,16 @@ module objects {
             this.image.regY = this.height / 2;
             this.reset();
 
-            this.dx = 5;
+            this.dx = Math.floor(Math.random() * 10);
+            this.dy = Math.floor(Math.random() * 10);
 
             game.addChild(this.image);
         }
 
         update() {
             this.image.x -= this.dx;
-            if (this.image.x < 0) {
+            this.image.y -= this.dy;
+            if (this.image.x < 0 || this.image.y < 0 || this.image.y > 445) {
                 this.reset();
             }
         }
