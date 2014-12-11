@@ -1,4 +1,5 @@
 ﻿/// <reference path="../objects/button.ts" />
+/// <reference path="../objects/enemies.ts" />
 /// <reference path="../objects/hazards.ts" />
 /// <reference path="../objects/crystal.ts" />
 /// <reference path="../objects/lifeOrb.ts" />
@@ -27,6 +28,11 @@ module states {
             hazard[count].update();
         }
 
+        // update multiple enemies
+        for (var count = 0; count < constants.ENEMIES_NUM; count++) {
+            enemy[count].update();
+        }
+
         collision.update();
         scoreboard.update();
         //levelLabel.update();
@@ -51,6 +57,10 @@ module states {
         lifeOrb = new objects.lifeOrb(stage, game);
         player = new objects.player(stage, game);
         constants.HAZARDS_NUM = constants.HAZARDS_NUM * 1.5;
+        if (constants.ENEMIES_NUM == 1)
+            constants.ENEMIES_NUM = 2;
+        else
+            constants.ENEMIES_NUM = constants.ENEMIES_NUM * 1.5;
 
         //display the level
         //levelLabel = new objects.LevelLabel("level 2");
@@ -62,12 +72,16 @@ module states {
         for (var count = 0; count < constants.HAZARDS_NUM; count++) {
             hazard[count] = new objects.Hazards(stage, game);
         }
+        //create multiple enemies
+        for (var count = 0; count < constants.ENEMIES_NUM; count++) {
+            enemy[count] = new objects.enemies(stage, game);
+        }
 
         // Display Scoreboard
         scoreboard.showScoreBoard();
 
         // Instantiate Collision Manager
-        collision = new managers.Collision(player, crystal, lifeOrb, hazard, scoreboard);
+        collision = new managers.Collision(player, crystal, lifeOrb, hazard, enemy, scoreboard);
 
         stage.addChild(game);
     }

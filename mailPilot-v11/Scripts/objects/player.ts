@@ -17,7 +17,7 @@ module objects {
         constructor(stage: createjs.Stage, game: createjs.Container) {
             this.stage = stage;
             this.game = game;
-            this.image = new createjs.Sprite(managers.Assets.character, "frame 2");
+            this.image = new createjs.Sprite(managers.Assets.character, "character");
             this.image.x = 50;
             this.width = this.image.getBounds().width;
             this.height = this.image.getBounds().height;

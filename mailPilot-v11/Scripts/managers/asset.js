@@ -54,7 +54,11 @@ var managers;
         "animations": {
             "frame 1": [0],
             "frame 2": [1],
-            "frame 3": [2]
+            "frame 3": [2],
+            "character": {
+                frames: [0, 1, 2],
+                speed: 0.1
+            }
         }
     };
 
@@ -67,9 +71,25 @@ var managers;
             [68, 33, 26, 31]
         ],
         "animations": {
-            "thief 1": [0],
-            "thief 2": [1],
-            "thief 3": [2]
+            "thief": {
+                frames: [0, 1, 2],
+                speed: 0.15
+            }
+        }
+    };
+
+    var mageSheetData = {
+        "images": ["assets/images/mage.png"],
+        "frames": [
+            [4, 33, 24, 31],
+            [36, 31, 26, 32],
+            [68, 33, 26, 31]
+        ],
+        "animations": {
+            "mage": {
+                frames: [0, 1, 2],
+                speed: 0.15
+            }
         }
     };
 
@@ -97,11 +117,62 @@ var managers;
         "images": ["assets/images/collectables.png"],
         "frames": [
             [97, 63, 27, 22],
-            [26, 29, 33, 30]
+            [26, 29, 33, 30],
+            [70, 13, 20, 23],
+            [115, 13, 20, 23]
         ],
         "animations": {
             "life orb": [0],
-            "crystal": [1]
+            "crystal": [1],
+            "red gem": [2],
+            "blue gem": [3]
+        }
+    };
+
+    //players weapons sprite sheet
+    var weaponsSheetData = {
+        "images": ["assets/images/weapons.png"],
+        "frames": [
+            [70, 58, 28, 45],
+            [56, 21, 110, 13]
+        ],
+        "animations": {
+            "axe": [0],
+            "spear": [1]
+        }
+    };
+
+    //fireball explosion sprite sheet
+    var explosionSheetData = {
+        "images": ["assets/images/explosion.png"],
+        "frames": [
+            [0, 39, 43, 45],
+            [61, 40, 50, 47],
+            [130, 41, 44, 45],
+            [203, 36, 36, 44]
+        ],
+        "animations": {
+            "explosion": {
+                frames: [0, 1, 2, 3],
+                speed: 0.15
+            }
+        }
+    };
+
+    //firebal sprite sheet
+    var fireballSheetData = {
+        "images": ["assets/images/fireball.png"],
+        "frames": [
+            [1, 22, 52, 17],
+            [65, 22, 53, 16],
+            [128, 22, 55, 17],
+            [194, 23, 55, 16]
+        ],
+        "animations": {
+            "fireball": {
+                frames: [0, 1, 2, 3],
+                speed: 0.15
+            }
         }
     };
 
@@ -119,6 +190,10 @@ var managers;
             this.collectables = new createjs.SpriteSheet(collectablesSheetData);
             this.hazards = new createjs.SpriteSheet(hazardsSheetData);
             this.thief = new createjs.SpriteSheet(thiefSheetData);
+            this.mage = new createjs.SpriteSheet(mageSheetData);
+            this.weapons = new createjs.SpriteSheet(weaponsSheetData);
+            this.explosion = new createjs.SpriteSheet(explosionSheetData);
+            this.fireball = new createjs.SpriteSheet(fireballSheetData);
         };
         return Assets;
     })();

@@ -1,4 +1,5 @@
 ﻿/// <reference path="../objects/button.ts" />
+/// <reference path="../objects/enemies.ts" />
 /// <reference path="../objects/hazards.ts" />
 /// <reference path="../objects/crystal.ts" />
 /// <reference path="../objects/lifeOrb.ts" />
@@ -22,9 +23,14 @@ module states {
         lifeOrb.update();
         player.update();
 
-        // Create multiple hazards
+        // update multiple hazards
         for (var count = 0; count < constants.HAZARDS_NUM; count++) {
             hazard[count].update();
+        }
+
+        // update multiple enemies
+        for (var count = 0; count < constants.ENEMIES_NUM; count++) {
+            enemy[count].update();
         }
 
         collision.update();
@@ -50,12 +56,18 @@ module states {
     }
     // play state Function
     export function play(): void {
-        if (constants.DIFFICULTY == "easy")
+        if (constants.DIFFICULTY == "easy") {
             constants.HAZARDS_NUM = 3;
-        else if (constants.DIFFICULTY == "medium")
+            constants.ENEMIES_NUM = 0;
+        }
+        else if (constants.DIFFICULTY == "medium") {
             constants.HAZARDS_NUM = 4;
-        else if (constants.DIFFICULTY == "hard")
+            constants.ENEMIES_NUM = 1;
+        }
+        else if (constants.DIFFICULTY == "hard") {
             constants.HAZARDS_NUM = 5;
+            constants.ENEMIES_NUM = 2;
+        }
 
         // Declare new Game Container
         game = new createjs.Container();
@@ -77,13 +89,16 @@ module states {
             hazard[count] = new objects.Hazards(stage, game);
         }
 
-        //if(constants.DIFFICULTY == "hard")
+        //create multiple enemies
+        for (var count = 0; count < constants.ENEMIES_NUM; count++) {
+            enemy[count] = new objects.enemies(stage, game);
+        }
 
         // Display Scoreboard
         scoreboard = new objects.Scoreboard(stage, game);
 
         // Instantiate Collision Manager
-        collision = new managers.Collision(player, crystal, lifeOrb, hazard, scoreboard);
+        collision = new managers.Collision(player, crystal, lifeOrb, hazard, enemy, scoreboard);
 
         stage.addChild(game);
         this.overworld = createjs.Sound.play('overworld', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);

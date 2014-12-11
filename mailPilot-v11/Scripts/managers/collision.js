@@ -1,4 +1,5 @@
-﻿/// <reference path="../objects/hazards.ts" />
+﻿/// <reference path="../objects/enemies.ts" />
+/// <reference path="../objects/hazards.ts" />
 /// <reference path="../objects/crystal.ts" />
 /// <reference path="../objects/lifeOrb.ts" />
 /// <reference path="../objects/player.ts" />
@@ -13,13 +14,15 @@ var managers;
 (function (managers) {
     // Collision Manager Class
     var Collision = (function () {
-        function Collision(player, crystal, lifeOrb, hazards, scoreboard) {
+        function Collision(player, crystal, lifeOrb, hazards, enemy, scoreboard) {
             this.hazards = [];
+            this.enemy = [];
             this.player = player;
             this.crystal = crystal;
             this.lifeOrb = lifeOrb;
             this.hazards = hazards;
             this.scoreboard = scoreboard;
+            this.enemy = enemy;
         }
         // Utility method - Distance calculation between two points
         Collision.prototype.distance = function (p1, p2) {
@@ -72,6 +75,27 @@ var managers;
                         this.hazards[i].reset();
                         hazards.reset();
                     }
+                }
+            }
+        };
+
+        //checks if the thief hit
+        Collision.prototype.playerAndThief = function (enemy) {
+            var p1 = new createjs.Point();
+            var p2 = new createjs.Point();
+            p1.x = this.player.image.x;
+            p1.y = this.player.image.y;
+            p2.x = enemy.image.x;
+            p2.y = enemy.image.y;
+            if (this.distance(p1, p2) < ((this.player.width / 2) + (enemy.width / 2))) {
+                if (enemy.name == "thief") {
+                    createjs.Sound.play("hurt");
+                    this.scoreboard.score -= 50;
+                    enemy.reset();
+                } else if (enemy.name == "mage") {
+                    createjs.Sound.play("hurt");
+                    this.scoreboard.lives -= 1;
+                    enemy.reset();
                 }
             }
         };
@@ -134,10 +158,13 @@ var managers;
         Collision.prototype.update = function () {
             for (var count = 0; count < constants.HAZARDS_NUM; count++) {
                 this.playerAndHazard(this.hazards[count]);
-
-                //this.overlap();
-                this.hazardCheck(this.hazards[count]);
+                //this.hazardCheck(this.hazards[count]);
             }
+            for (var count = 0; count < constants.ENEMIES_NUM; count++) {
+                this.playerAndThief(this.enemy[count]);
+            }
+
+            //this.overlap();
             this.playerAndCrystal();
             this.playerAndLifeorb();
         };

@@ -2,6 +2,7 @@
 /// <reference path="managers/asset.ts" />
 /// <reference path="objects/hazards.ts" />
 /// <reference path="objects/crystal.ts" />
+/// <reference path="objects/enemies.ts" />
 /// <reference path="objects/lifeOrb.ts" />
 /// <reference path="objects/land.ts" />
 /// <reference path="objects/player.ts" />
@@ -27,6 +28,7 @@ var player;
 var crystal;
 var lifeOrb;
 var hazard = [];
+var enemy = [];
 var scoreboard;
 var levelLabel;
 

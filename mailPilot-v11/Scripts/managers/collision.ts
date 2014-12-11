@@ -1,4 +1,5 @@
-﻿/// <reference path="../objects/hazards.ts" />
+﻿/// <reference path="../objects/enemies.ts" />
+/// <reference path="../objects/hazards.ts" />
 /// <reference path="../objects/crystal.ts" />
 /// <reference path="../objects/lifeOrb.ts" />
 /// <reference path="../objects/player.ts" />
@@ -18,14 +19,16 @@ module managers {
         private crystal: objects.Crystal;
         private lifeOrb: objects.lifeOrb;
         private hazards = [];
+        private enemy = [];
         private scoreboard: objects.Scoreboard;
 
-        constructor(player: objects.player, crystal: objects.Crystal, lifeOrb: objects.lifeOrb, hazards, scoreboard: objects.Scoreboard) {
+        constructor(player: objects.player, crystal: objects.Crystal, lifeOrb: objects.lifeOrb, hazards, enemy, scoreboard: objects.Scoreboard) {
             this.player = player;
             this.crystal = crystal;
             this.lifeOrb = lifeOrb;
             this.hazards = hazards;
             this.scoreboard = scoreboard;
+            this.enemy = enemy;
         }
 
         // Utility method - Distance calculation between two points
@@ -82,6 +85,28 @@ module managers {
                         this.hazards[i].reset();
                         hazards.reset();
                     }
+                }
+            }
+        }
+
+        //checks if the thief hit
+        private playerAndThief(enemy: objects.enemies) {
+            var p1: createjs.Point = new createjs.Point();
+            var p2: createjs.Point = new createjs.Point();
+            p1.x = this.player.image.x;
+            p1.y = this.player.image.y;
+            p2.x = enemy.image.x;
+            p2.y = enemy.image.y;
+            if (this.distance(p1, p2) < ((this.player.width / 2) + (enemy.width / 2))) {
+                if (enemy.name == "thief") {
+                    createjs.Sound.play("hurt");
+                    this.scoreboard.score -= 50;
+                    enemy.reset();
+                }
+                else if (enemy.name == "mage") {
+                    createjs.Sound.play("hurt");
+                    this.scoreboard.lives -= 1;
+                    enemy.reset();
                 }
             }
         }
@@ -144,9 +169,12 @@ module managers {
         update() {
             for (var count = 0; count < constants.HAZARDS_NUM; count++) {
                 this.playerAndHazard(this.hazards[count]);
-                //this.overlap();
-                this.hazardCheck(this.hazards[count]);
+                //this.hazardCheck(this.hazards[count]);
             }
+            for (var count = 0; count < constants.ENEMIES_NUM; count++) {
+                this.playerAndThief(this.enemy[count]);
+            }
+            //this.overlap();
             this.playerAndCrystal();
             this.playerAndLifeorb();
         }

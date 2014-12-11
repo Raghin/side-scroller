@@ -15,10 +15,11 @@ var constants;
     constants.PREVIOUS_STATE;
 
     // Game Constants
-    constants.HAZARDS_NUM = 10;
+    constants.HAZARDS_NUM = 5;
+    constants.ENEMIES_NUM = 3;
 
     //export var CRYSTALS_NUM: number = 2;
-    constants.LABEL_FONT = "30px Consolas";
+    constants.LABEL_FONT = "25px Consolas";
     constants.LABEL_COLOUR = "#FFFF00";
     constants.PLAYER_LIVES = 3;
     constants.DIFFICULTY = "";
