@@ -53,7 +53,7 @@ module states {
                 scoreboard.score = 0
         }
 
-        if (scoreboard.score >= 1000) {
+        if (scoreboard.score >= 1500) {
             stage.removeChild(game);
             player.destroy();
             game.removeAllChildren();

@@ -50,7 +50,7 @@ var states;
                 scoreboard.score = 0;
         }
 
-        if (scoreboard.score >= 500) {
+        if (scoreboard.score >= 750) {
             stage.removeChild(game);
             player.destroy();
             game.removeAllChildren();
