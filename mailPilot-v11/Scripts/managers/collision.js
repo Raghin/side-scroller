@@ -17,6 +17,7 @@ var managers;
         function Collision(player, crystal, lifeOrb, hazards, enemy, scoreboard) {
             this.hazards = [];
             this.enemy = [];
+            this.crystal = [];
             this.player = player;
             this.crystal = crystal;
             this.lifeOrb = lifeOrb;
@@ -41,26 +42,28 @@ var managers;
             return result;
         };
 
+        /**
         //check for overlap between items
-        Collision.prototype.overlap = function () {
-            var p1 = new createjs.Point();
-            var p2 = new createjs.Point();
-            var p3 = new createjs.Point();
-            p1.x = this.crystal.image.x;
-            p1.y = this.crystal.image.y;
-            p3.x = this.lifeOrb.image.x;
-            p3.y = this.lifeOrb.image.y;
-            for (var i = 0; i < this.hazards.length; i++) {
-                p2.x = this.hazards[i].image.x;
-                p2.y = this.hazards[i].image.y;
-                if (this.distance(p1, p2) < ((this.crystal.width / 2) + (this.hazards[i].width / 2)) || this.distance(p1, p2) < ((this.crystal.height / 2) + (this.hazards[i].height / 2))) {
-                    this.crystal.reset();
-                } else if (this.distance(p2, p3) < ((this.lifeOrb.width / 2) + (this.hazards[i].width / 2)) || this.distance(p2, p3) < ((this.lifeOrb.height / 2) + (this.hazards[i].height / 2))) {
-                    this.lifeOrb.reset();
-                }
-            }
-        };
-
+        private overlap() {
+        var p1: createjs.Point = new createjs.Point();
+        var p2: createjs.Point = new createjs.Point();
+        var p3: createjs.Point = new createjs.Point();
+        p1.x = this.crystal.image.x;
+        p1.y = this.crystal.image.y;
+        p3.x = this.lifeOrb.image.x;
+        p3.y = this.lifeOrb.image.y;
+        for (var i = 0; i < this.hazards.length; i++) {
+        p2.x = this.hazards[i].image.x;
+        p2.y = this.hazards[i].image.y;
+        if (this.distance(p1, p2) < ((this.crystal.width / 2) + (this.hazards[i].width / 2)) || this.distance(p1, p2) < ((this.crystal.height / 2) + (this.hazards[i].height / 2))) {
+        this.crystal.reset();
+        }
+        else if (this.distance(p2, p3) < ((this.lifeOrb.width / 2) + (this.hazards[i].width / 2)) || this.distance(p2, p3) < ((this.lifeOrb.height / 2) + (this.hazards[i].height / 2))) {
+        this.lifeOrb.reset();
+        }
+        }
+        }
+        **/
         // checks if 1 hazards are overlapping
         Collision.prototype.hazardCheck = function (hazards) {
             var p1 = new createjs.Point();
@@ -125,17 +128,22 @@ var managers;
         };
 
         // check collision between player and crystal
-        Collision.prototype.playerAndCrystal = function () {
+        Collision.prototype.playerAndCrystal = function (crystal) {
             var p1 = new createjs.Point();
             var p2 = new createjs.Point();
             p1.x = this.player.image.x;
             p1.y = this.player.image.y;
-            p2.x = this.crystal.image.x;
-            p2.y = this.crystal.image.y;
-            if (this.distance(p1, p2) < ((this.player.width / 2) + (this.crystal.width / 2))) {
+            p2.x = crystal.image.x;
+            p2.y = crystal.image.y;
+            if (this.distance(p1, p2) < ((this.player.width / 2) + (crystal.width / 2))) {
                 createjs.Sound.play("score");
-                this.scoreboard.score += 100;
-                this.crystal.reset();
+                if (crystal.name == "crystal")
+                    this.scoreboard.score += 100;
+                else if (crystal.name == "red gem")
+                    this.scoreboard.score += 150;
+                else if (crystal.name == "blue gem")
+                    this.scoreboard.score += 200;
+                crystal.reset();
             }
         };
 
@@ -163,9 +171,12 @@ var managers;
             for (var count = 0; count < constants.ENEMIES_NUM; count++) {
                 this.playerAndThief(this.enemy[count]);
             }
+            for (var count = 0; count < constants.CRYSTALS_NUM; count++) {
+                this.playerAndCrystal(this.crystal[count]);
+            }
 
             //this.overlap();
-            this.playerAndCrystal();
+            //this.playerAndCrystal();
             this.playerAndLifeorb();
         };
         return Collision;

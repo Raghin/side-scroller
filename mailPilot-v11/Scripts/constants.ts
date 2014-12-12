@@ -17,7 +17,7 @@ module constants {
     // Game Constants
     export var HAZARDS_NUM: number = 5;
     export var ENEMIES_NUM: number = 3;
-    //export var CRYSTALS_NUM: number = 2;
+    export var CRYSTALS_NUM: number = 3;
     export var LABEL_FONT = "25px Consolas";
     export var LABEL_COLOUR = "#FFFF00";
     export var PLAYER_LIVES = 3;

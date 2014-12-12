@@ -16,13 +16,14 @@ module managers {
     export class Collision {
         // class variables
         private player: objects.player;
-        private crystal: objects.Crystal;
+        //private crystal: objects.Crystal;
         private lifeOrb: objects.lifeOrb;
         private hazards = [];
         private enemy = [];
+		private crystal = [];
         private scoreboard: objects.Scoreboard;
 
-        constructor(player: objects.player, crystal: objects.Crystal, lifeOrb: objects.lifeOrb, hazards, enemy, scoreboard: objects.Scoreboard) {
+        constructor(player: objects.player, crystal, lifeOrb: objects.lifeOrb, hazards, enemy, scoreboard: objects.Scoreboard) {
             this.player = player;
             this.crystal = crystal;
             this.lifeOrb = lifeOrb;
@@ -47,7 +48,7 @@ module managers {
 
             return result;
         }
-
+		/**
         //check for overlap between items
         private overlap() {
             var p1: createjs.Point = new createjs.Point();
@@ -68,7 +69,7 @@ module managers {
                 }
             }
         }
-
+		**/
         // checks if 1 hazards are overlapping
         private hazardCheck(hazards: objects.Hazards) {
             var p1: createjs.Point = new createjs.Point();
@@ -136,17 +137,22 @@ module managers {
         }
 
         // check collision between player and crystal
-        private playerAndCrystal() {
+        private playerAndCrystal(crystal: objects.Crystal) {
             var p1: createjs.Point = new createjs.Point();
             var p2: createjs.Point = new createjs.Point();
             p1.x = this.player.image.x;
             p1.y = this.player.image.y;
-            p2.x = this.crystal.image.x;
-            p2.y = this.crystal.image.y;
-            if (this.distance(p1, p2) < ((this.player.width / 2) + (this.crystal.width / 2))) {
+            p2.x = crystal.image.x;
+            p2.y = crystal.image.y;
+            if (this.distance(p1, p2) < ((this.player.width / 2) + (crystal.width / 2))) {
                 createjs.Sound.play("score");
-                this.scoreboard.score += 100;
-                this.crystal.reset();
+                if(crystal.name == "crystal")
+                    this.scoreboard.score += 100;
+                else if (crystal.name == "red gem")
+                    this.scoreboard.score += 150;
+                else if (crystal.name == "blue gem")
+                    this.scoreboard.score += 200;
+                crystal.reset();
             }
         }
 
@@ -174,8 +180,11 @@ module managers {
             for (var count = 0; count < constants.ENEMIES_NUM; count++) {
                 this.playerAndThief(this.enemy[count]);
             }
+			for (var count = 0; count < constants.CRYSTALS_NUM; count++) {
+                this.playerAndCrystal(this.crystal[count]);
+            }
             //this.overlap();
-            this.playerAndCrystal();
+            //this.playerAndCrystal();
             this.playerAndLifeorb();
         }
     }

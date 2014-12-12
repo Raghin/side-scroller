@@ -43,7 +43,7 @@ var states;
     function gameOver() {
         game.removeAllChildren();
         game.removeAllEventListeners();
-        var background = new createjs.Bitmap(managers.Assets.loader.getResult("intro"));
+        var background = new createjs.Bitmap(managers.Assets.loader.getResult("outro"));
         var gameOverLabel;
         var finalScoreLabel;
         var finalScore;

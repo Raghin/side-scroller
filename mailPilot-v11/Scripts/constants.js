@@ -17,8 +17,7 @@ var constants;
     // Game Constants
     constants.HAZARDS_NUM = 5;
     constants.ENEMIES_NUM = 3;
-
-    //export var CRYSTALS_NUM: number = 2;
+    constants.CRYSTALS_NUM = 3;
     constants.LABEL_FONT = "25px Consolas";
     constants.LABEL_COLOUR = "#FFFF00";
     constants.PLAYER_LIVES = 3;

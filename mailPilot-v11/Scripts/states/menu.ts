@@ -4,6 +4,7 @@
 /// <reference path="../objects/land.ts" />
 /// <reference path="../objects/background.ts" />
 /// <reference path="../objects/crystal.ts" />
+/// <reference path="../objects/helpbutton.ts" />
 /// <reference path="../objects/button.ts" />
 /// <reference path="../objects/label.ts" />
 
@@ -18,6 +19,57 @@ module states {
     var gameNameLabel: createjs.Bitmap;
     var gameInstructionLabel: objects.Label;
     var instructions: objects.Label;
+
+    export function instructionsButtonClicked(event: MouseEvent) {
+        game.removeAllChildren();
+        game.removeAllEventListeners();
+        var background = new createjs.Bitmap(managers.Assets.loader.getResult("intro"));
+        game.addChild(background);
+        game.addChild(gameNameLabel);
+        var collectablesButton = new objects.helpButton(150, 300, "enemiesButton");
+        game.addChild(collectablesButton);
+        collectablesButton.addEventListener("click", function () {
+            game.removeAllChildren();
+            game.removeAllEventListeners();
+            var background = new createjs.Bitmap(managers.Assets.loader.getResult("intro"));
+            game.addChild(background);
+            game.addChild(gameNameLabel);
+            var backButton = new objects.helpButton(this.canvas.width / 2, 400, "backButton");
+            game.addChild(backButton);
+            backButton.addEventListener("click", instructionsButtonClicked);
+        });
+        var hazardsButton = new objects.helpButton(400, 300, "hazardsButton");
+        game.addChild(hazardsButton);
+        hazardsButton.addEventListener("click", function () {
+            game.removeAllChildren();
+            game.removeAllEventListeners();
+            var background = new createjs.Bitmap(managers.Assets.loader.getResult("intro"));
+            game.addChild(background);
+            game.addChild(gameNameLabel);
+            var backButton = new objects.helpButton(this.canvas.width / 2, 400, "backButton");
+            game.addChild(backButton);
+            backButton.addEventListener("click", instructionsButtonClicked);
+        });
+        var enemiesButton = new objects.helpButton(150, 400, "collectablesButton");
+        game.addChild(enemiesButton);
+        enemiesButton.addEventListener("click", function () {
+            game.removeAllChildren();
+            game.removeAllEventListeners();
+            var background = new createjs.Bitmap(managers.Assets.loader.getResult("intro"));
+            game.addChild(background);
+            game.addChild(gameNameLabel);
+            var backButton = new objects.helpButton(this.canvas.width / 2, 400, "backButton");
+            game.addChild(backButton);
+            backButton.addEventListener("click", instructionsButtonClicked);
+        });
+        var backButton = new objects.helpButton(400, 400, "backButton");
+        game.addChild(backButton);
+        backButton.addEventListener("click", function () {
+            game.removeAllChildren();
+            game.removeAllEventListeners();
+            menu();
+        });
+    }
 
     export function playButtonClicked(event: MouseEvent) {
         game.removeAllChildren();
@@ -115,8 +167,12 @@ module states {
         instructions = new objects.Label(stage.canvas.width / 2, 270, "pits -2, firepits -3");
         game.addChild(instructions);
 
+        var instructionsButton = new objects.helpButton(150, 380, "instructionsButton");
+        game.addChild(instructionsButton);
+        instructionsButton.addEventListener("click", instructionsButtonClicked);
+
         // Display Play Button
-        playButton = new objects.Button(stage.canvas.width / 2, 380, "playButton");
+        playButton = new objects.Button(400, 380, "playButton");
         game.addChild(playButton);
         playButton.addEventListener("click", playButtonClicked);
 

@@ -40,7 +40,7 @@ module states {
     export function gameOver() {
         game.removeAllChildren();
         game.removeAllEventListeners();
-        var background = new createjs.Bitmap(managers.Assets.loader.getResult("intro"));
+        var background = new createjs.Bitmap(managers.Assets.loader.getResult("outro"));
         var gameOverLabel: createjs.Bitmap;
         var finalScoreLabel: createjs.Bitmap;
         var finalScore: objects.Label;

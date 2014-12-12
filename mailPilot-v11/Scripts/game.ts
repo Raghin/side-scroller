@@ -27,7 +27,8 @@ var game: createjs.Container;
 var land: objects.Land;
 var player: objects.player;
 
-var crystal: objects.Crystal;
+//var crystal: objects.Crystal;
+var crystal = [];
 var lifeOrb: objects.lifeOrb;
 var hazard = []; // hazards array
 var enemy = []; // enemies array
@@ -35,6 +36,7 @@ var scoreboard: objects.Scoreboard;
 var levelLabel: objects.LevelLabel;
 
 var collision: managers.Collision;
+//var bulletManager: managers.weaponsManager;
 
 var tryAgain: objects.Button;
 var playButton: objects.Button;

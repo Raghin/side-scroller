@@ -19,7 +19,7 @@
 module states {
     export function level2State() {
         land.update();
-        crystal.update();
+        //crystal.update();
         lifeOrb.update();
         player.update();
 
@@ -33,20 +33,27 @@ module states {
             enemy[count].update();
         }
 
+		// update multiple crystals
+        for (var count = 0; count < constants.CRYSTALS_NUM; count++) {
+            crystal[count].update();
+        }
+
         collision.update();
         scoreboard.update();
         //levelLabel.update();
 
-        if (scoreboard.lives <= 0) {
+        if (scoreboard.lives <= 0 || scoreboard.score < 0) {
             stage.removeChild(game);
             player.destroy();
             game.removeAllChildren();
             game.removeAllEventListeners();
             currentState = constants.GAME_OVER_STATE;
             changeState(currentState);
+            if (scoreboard.score < 0)
+                scoreboard.score = 0
         }
 
-        if (scoreboard.score >= 300) {
+        if (scoreboard.score >= 1000) {
             stage.removeChild(game);
             player.destroy();
             game.removeAllChildren();
@@ -62,7 +69,7 @@ module states {
         // Instantiate Game Objects
         land = new objects.Land(stage, game);
         land.setDesert();
-        crystal = new objects.Crystal(stage, game);
+        //crystal = new objects.Crystal(stage, game);
         lifeOrb = new objects.lifeOrb(stage, game);
         player = new objects.player(stage, game);
         constants.HAZARDS_NUM = constants.HAZARDS_NUM * 2;
@@ -84,6 +91,10 @@ module states {
         //create multiple enemies
         for (var count = 0; count < constants.ENEMIES_NUM; count++) {
             enemy[count] = new objects.enemies(stage, game);
+        }
+		//create multiple crystals
+        for (var count = 0; count < constants.CRYSTALS_NUM; count++) {
+            crystal[count] = new objects.Crystal(stage, game);
         }
 
         // Display Scoreboard

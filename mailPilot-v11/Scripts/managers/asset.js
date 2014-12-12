@@ -9,6 +9,7 @@ var managers;
     // Image and Sound Manifest;
     var assetManifest = [
         { id: "intro", src: "assets/images/start screen.png" },
+        { id: "outro", src: "assets/images/game over.jpg" },
         { id: "title", src: "assets/images/title logo.png" },
         { id: "end", src: "assets/images/ending logo.png" },
         { id: "points", src: "assets/images/score.png" },
@@ -40,6 +41,26 @@ var managers;
             "mediumButton": [3],
             "hardButton": [4],
             "mainMenuButton": [5]
+        }
+    };
+
+    var extraButtonSheetData = {
+        "images": ["assets/images/atlas2.png"],
+        "frames": [
+            [230, 73, 211, 69],
+            [230, 144, 211, 69],
+            [6, 0, 211, 69],
+            [6, 67, 211, 69],
+            [6, 141, 211, 69],
+            [230, 0, 211, 69]
+        ],
+        "animations": {
+            "backButton": [0],
+            "blank2": [1],
+            "instructionsButton": [2],
+            "hazardsButton": [3],
+            "enemiesButton": [4],
+            "collectablesButton": [5]
         }
     };
 
@@ -186,6 +207,7 @@ var managers;
             this.loader.installPlugin(createjs.Sound);
             this.loader.loadManifest(assetManifest);
             this.atlas = new createjs.SpriteSheet(spriteSheetData);
+            this.atlas2 = new createjs.SpriteSheet(extraButtonSheetData);
             this.character = new createjs.SpriteSheet(characterSheetData);
             this.collectables = new createjs.SpriteSheet(collectablesSheetData);
             this.hazards = new createjs.SpriteSheet(hazardsSheetData);

@@ -47,7 +47,7 @@ module objects {
         }
 
         reset() {
-            game.removeChild(this.image);
+            this.destroy();
             this.image = new createjs.Sprite(managers.Assets.hazards, (this.name = this.images[Math.floor(Math.random() * 5)]));
             this.image.y = constants.COORDINATES[Math.floor(Math.random() * 6)];
             this.image.x = this.stage.canvas.width + constants.COORDINATES[Math.floor(Math.random() * 6)];

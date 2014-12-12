@@ -25,7 +25,8 @@ var game;
 var land;
 var player;
 
-var crystal;
+//var crystal: objects.Crystal;
+var crystal = [];
 var lifeOrb;
 var hazard = [];
 var enemy = [];
@@ -34,6 +35,7 @@ var levelLabel;
 
 var collision;
 
+//var bulletManager: managers.weaponsManager;
 var tryAgain;
 var playButton;
 
