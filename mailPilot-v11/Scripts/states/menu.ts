@@ -26,6 +26,23 @@ module states {
         var background = new createjs.Bitmap(managers.Assets.loader.getResult("intro"));
         game.addChild(background);
         game.addChild(gameNameLabel);
+        // display instructions label
+        gameInstructionLabel = new objects.Label(stage.canvas.width / 2, 95, "Instructions");
+        gameInstructionLabel.fontSize(40);
+        game.addChild(gameInstructionLabel);
+
+        gameInstructionLabel = new objects.Label(stage.canvas.width / 2, 135, "Avoid enemies and hazards");
+        gameInstructionLabel.fontSize(25);
+        game.addChild(gameInstructionLabel);
+        gameInstructionLabel = new objects.Label(stage.canvas.width / 2, 165, "while collecting crystals");
+        gameInstructionLabel.fontSize(25);
+        game.addChild(gameInstructionLabel);
+        gameInstructionLabel = new objects.Label(stage.canvas.width / 2, 195, "and life orbs by using the");
+        gameInstructionLabel.fontSize(25);
+        game.addChild(gameInstructionLabel);
+        gameInstructionLabel = new objects.Label(stage.canvas.width / 2, 225, "mouse to go up or down");
+        gameInstructionLabel.fontSize(25);
+        game.addChild(gameInstructionLabel);
         var collectablesButton = new objects.helpButton(150, 300, "enemiesButton");
         game.addChild(collectablesButton);
         collectablesButton.addEventListener("click", function () {
@@ -37,6 +54,20 @@ module states {
             var backButton = new objects.helpButton(this.canvas.width / 2, 400, "backButton");
             game.addChild(backButton);
             backButton.addEventListener("click", instructionsButtonClicked);
+            gameInstructionLabel = new objects.Label(stage.canvas.width / 3, 135, "Thief: lose 50 points");
+            gameInstructionLabel.fontSize(20);
+            game.addChild(gameInstructionLabel);
+            var pic = new createjs.Sprite(managers.Assets.thief, "thief");
+            pic.x = stage.canvas.width * 2/3;
+            pic.y = 120;
+            game.addChild(pic)
+            gameInstructionLabel = new objects.Label(stage.canvas.width / 3, 175, "Mage: lose 1 life point");
+            gameInstructionLabel.fontSize(20);
+            game.addChild(gameInstructionLabel);
+            var pic = new createjs.Sprite(managers.Assets.mage, "mage");
+            pic.x = stage.canvas.width * 2 / 3;
+            pic.y = 160;
+            game.addChild(pic)
         });
         var hazardsButton = new objects.helpButton(400, 300, "hazardsButton");
         game.addChild(hazardsButton);
@@ -49,6 +80,27 @@ module states {
             var backButton = new objects.helpButton(this.canvas.width / 2, 400, "backButton");
             game.addChild(backButton);
             backButton.addEventListener("click", instructionsButtonClicked);
+            gameInstructionLabel = new objects.Label(stage.canvas.width / 3, 135, "Stones: lose 1 life point");
+            gameInstructionLabel.fontSize(20);
+            game.addChild(gameInstructionLabel);
+            var pic = new createjs.Sprite(managers.Assets.hazards, "stones");
+            pic.x = stage.canvas.width * 2 / 3;
+            pic.y = 120;
+            game.addChild(pic)
+            gameInstructionLabel = new objects.Label(stage.canvas.width / 3, 175, "Pit: lose 2 life points");
+            gameInstructionLabel.fontSize(20);
+            game.addChild(gameInstructionLabel);
+            var pic = new createjs.Sprite(managers.Assets.hazards, "hor pit");
+            pic.x = stage.canvas.width * 2 / 3;
+            pic.y = 160;
+            game.addChild(pic)
+            gameInstructionLabel = new objects.Label(stage.canvas.width / 3, 215, "Lava Pit: lose 3 life points");
+            gameInstructionLabel.fontSize(20);
+            game.addChild(gameInstructionLabel);
+            var pic = new createjs.Sprite(managers.Assets.hazards, "hor firepit");
+            pic.x = stage.canvas.width * 2 / 3;
+            pic.y = 200;
+            game.addChild(pic)
         });
         var enemiesButton = new objects.helpButton(150, 400, "collectablesButton");
         game.addChild(enemiesButton);
@@ -61,6 +113,34 @@ module states {
             var backButton = new objects.helpButton(this.canvas.width / 2, 400, "backButton");
             game.addChild(backButton);
             backButton.addEventListener("click", instructionsButtonClicked);
+            gameInstructionLabel = new objects.Label(stage.canvas.width / 3, 135, "Crystal: gain 100 points");
+            gameInstructionLabel.fontSize(20);
+            game.addChild(gameInstructionLabel);
+            var pic = new createjs.Sprite(managers.Assets.collectables, "crystal");
+            pic.x = stage.canvas.width * 2 / 3;
+            pic.y = 120;
+            game.addChild(pic)
+            gameInstructionLabel = new objects.Label(stage.canvas.width / 3, 175, "Red gem: gain 150 points");
+            gameInstructionLabel.fontSize(20);
+            game.addChild(gameInstructionLabel);
+            var pic = new createjs.Sprite(managers.Assets.collectables, "red gem");
+            pic.x = stage.canvas.width * 2 / 3;
+            pic.y = 160;
+            game.addChild(pic)
+            gameInstructionLabel = new objects.Label(stage.canvas.width / 3, 215, "blue gem: gain 200 points");
+            gameInstructionLabel.fontSize(20);
+            game.addChild(gameInstructionLabel);
+            var pic = new createjs.Sprite(managers.Assets.collectables, "blue gem");
+            pic.x = stage.canvas.width * 2 / 3;
+            pic.y = 200;
+            game.addChild(pic)
+            gameInstructionLabel = new objects.Label(stage.canvas.width / 3, 255, "life orb: gain 1 life");
+            gameInstructionLabel.fontSize(20);
+            game.addChild(gameInstructionLabel);
+            var pic = new createjs.Sprite(managers.Assets.collectables, "life orb");
+            pic.x = stage.canvas.width * 2 / 3;
+            pic.y = 240;
+            game.addChild(pic)
         });
         var backButton = new objects.helpButton(400, 400, "backButton");
         game.addChild(backButton);
@@ -150,22 +230,6 @@ module states {
         // Display Game title
         gameNameLabel = new createjs.Bitmap(managers.Assets.loader.getResult("title"));
         game.addChild(gameNameLabel);
-
-        // display instructions label
-        gameInstructionLabel = new objects.Label(stage.canvas.width / 2, 70, "Instructions:");
-        game.addChild(gameInstructionLabel);
-
-        // display instructions
-        instructions = new objects.Label(stage.canvas.width / 2, 110, "1) Collect crystals");
-        game.addChild(instructions);
-        instructions = new objects.Label(stage.canvas.width / 2, 150, "2) Collect lifeOrbs");
-        game.addChild(instructions);
-        instructions = new objects.Label(stage.canvas.width / 2, 190, "3) Survive");
-        game.addChild(instructions);
-        instructions = new objects.Label(stage.canvas.width / 2, 230, "Avoid: stones -1,");
-        game.addChild(instructions);
-        instructions = new objects.Label(stage.canvas.width / 2, 270, "pits -2, firepits -3");
-        game.addChild(instructions);
 
         var instructionsButton = new objects.helpButton(150, 380, "instructionsButton");
         game.addChild(instructionsButton);

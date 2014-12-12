@@ -17,10 +17,11 @@ var objects;
             this.lives = constants.PLAYER_LIVES;
             this.score = 0;
             this.label = new createjs.Text(this.labelText, constants.LABEL_FONT, constants.LABEL_COLOUR);
+            this.testLabel = new createjs.BitmapText(this.labelText, managers.Assets.bitMapFont);
             this.update();
-            this.width = this.label.getBounds().width;
-            this.height = this.label.getBounds().height;
-
+            this.width = this.testLabel.getBounds().width;
+            this.height = this.testLabel.getBounds().height;
+            this.fontSize(25);
             this.update();
 
             this.showScoreBoard();
@@ -29,15 +30,22 @@ var objects;
             this.livesValueLabelString = this.lives.toString();
             this.scoreValueLabelString = this.score.toString();
             this.labelText = "Lives: " + this.livesValueLabelString + " Score: " + this.scoreValueLabelString;
-            this.label.text = this.labelText;
+            this.testLabel.text = this.labelText;
         };
 
         Scoreboard.prototype.showScoreBoard = function () {
-            game.addChild(this.label);
+            game.addChild(this.testLabel);
         };
 
         Scoreboard.prototype.destroy = function () {
-            game.removeChild(this.label);
+            game.removeChild(this.testLabel);
+        };
+
+        Scoreboard.prototype.fontSize = function (size) {
+            var scale = size / this.testLabel.getBounds().height;
+
+            this.testLabel.scaleX = scale;
+            this.testLabel.scaleY = scale;
         };
         return Scoreboard;
     })();

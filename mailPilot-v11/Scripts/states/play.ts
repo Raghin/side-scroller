@@ -49,7 +49,7 @@ module states {
             currentState = constants.GAME_OVER_STATE;
             changeState(currentState);
             if (scoreboard.score < 0)
-                scoreboard.score = 0
+                scoreboard.score = 0;
         }
 
         if (scoreboard.score >= 500) {

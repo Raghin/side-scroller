@@ -68,7 +68,7 @@ module states {
         game.addChild(finalScoreLabel);
 
         // Display Final Score
-        finalScore = new objects.Label(stage.canvas.width / 2, 160, scoreboard.score.toString());
+        finalScore = new objects.Label(stage.canvas.width / 2, 210, scoreboard.score.toString());
         game.addChild(finalScore);
 
         // Display Try Again Button

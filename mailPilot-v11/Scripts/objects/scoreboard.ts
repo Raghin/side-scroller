@@ -13,6 +13,7 @@ module objects {
         lives: number;
         score: number;
         label: createjs.Text;
+        testLabel: createjs.BitmapText;
         labelText: string = "";
         width: number;
         height: number;
@@ -24,10 +25,11 @@ module objects {
             this.lives = constants.PLAYER_LIVES;
             this.score = 0;
             this.label = new createjs.Text(this.labelText, constants.LABEL_FONT, constants.LABEL_COLOUR);
+            this.testLabel = new createjs.BitmapText(this.labelText, managers.Assets.bitMapFont);
             this.update();
-            this.width = this.label.getBounds().width;
-            this.height = this.label.getBounds().height;
-
+            this.width = this.testLabel.getBounds().width;
+            this.height = this.testLabel.getBounds().height;
+            this.fontSize(25);
             this.update();
 
             this.showScoreBoard();
@@ -37,15 +39,22 @@ module objects {
             this.livesValueLabelString = this.lives.toString();
             this.scoreValueLabelString = this.score.toString();
             this.labelText = "Lives: " + this.livesValueLabelString + " Score: " + this.scoreValueLabelString;
-            this.label.text = this.labelText;
+            this.testLabel.text = this.labelText;
         }
 
         showScoreBoard() {
-            game.addChild(this.label);
+            game.addChild(this.testLabel);
         }
 
         destroy() {
-            game.removeChild(this.label);
+            game.removeChild(this.testLabel);
+        }
+
+        fontSize(size: number) {
+            var scale: number = size / this.testLabel.getBounds().height;
+
+            this.testLabel.scaleX = scale;
+            this.testLabel.scaleY = scale;
         }
     }
 } 

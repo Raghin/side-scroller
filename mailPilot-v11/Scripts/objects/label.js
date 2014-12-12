@@ -1,4 +1,5 @@
 ﻿/// <reference path="../constants.ts" />
+/// <reference path="../managers/asset.ts" />
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -16,7 +17,7 @@ var objects;
     var Label = (function (_super) {
         __extends(Label, _super);
         function Label(x, y, labelText) {
-            _super.call(this, labelText, constants.LABEL_FONT, constants.LABEL_COLOUR);
+            _super.call(this, labelText, managers.Assets.bitMapFont);
             this.regX = this.getBounds().width / 2;
             this.regY = this.getBounds().height / 2;
             this.x = x;
@@ -30,7 +31,7 @@ var objects;
             this.scaleY = scale;
         };
         return Label;
-    })(createjs.Text);
+    })(createjs.BitmapText);
     objects.Label = Label;
 })(objects || (objects = {}));
 //# sourceMappingURL=label.js.map

@@ -59,6 +59,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\fonts\Dock51.png" />
+    <Content Include="assets\fonts\Dock51.svg" />
+    <Content Include="assets\fonts\fontAtlas.png" />
     <Content Include="assets\images\atlas.png" />
     <Content Include="assets\images\atlas2.png" />
     <Content Include="assets\images\explosion.png" />
@@ -82,6 +85,11 @@
     <Content Include="assets\sounds\hurt.wav" />
     <Content Include="assets\sounds\orb grab.wav" />
     <Content Include="assets\sounds\overworld.mp3" />
+    <Content Include="assets\fonts\Dock51.eot" />
+    <Content Include="assets\fonts\Dock51.tps" />
+    <Content Include="assets\fonts\Dock51.ttf" />
+    <Content Include="assets\fonts\Dock51.woff" />
+    <Content Include="assets\fonts\Dock51.woff2" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
